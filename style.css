@@ -1,0 +1,436 @@
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --nebi-orange: #E8862A;
+    --nebi-orange-light: #F4A94D;
+    --nebi-cream: #FFF8F0;
+    --nebi-white: #FFFFFF;
+    --nebi-dark: #3D2B1F;
+    --nebi-bg: #FFF5EB;
+    --nebi-grid: #F0E0D0;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'VT323', monospace;
+    background-color: var(--nebi-bg);
+    color: var(--nebi-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: default;
+}
+
+/* ===== PIXEL GRID BACKGROUND ===== */
+.pixel-grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--nebi-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--nebi-grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    max-width: 700px;
+}
+
+/* ===== LOGO ===== */
+.logo-container {
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.logo {
+    width: 260px;
+    height: auto;
+    image-rendering: auto;
+    filter: drop-shadow(0 4px 12px rgba(232, 134, 42, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* ===== HEADING ===== */
+.heading {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 22px;
+    color: var(--nebi-orange);
+    line-height: 1.6;
+    text-shadow: 2px 2px 0 rgba(232, 134, 42, 0.15);
+    animation: textPulse 4s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+}
+
+/* ===== SUBTEXT ===== */
+.subtext {
+    font-family: 'VT323', monospace;
+    font-size: 26px;
+    color: var(--nebi-dark);
+    opacity: 0.75;
+    max-width: 500px;
+}
+
+/* ===== CAT AREA ===== */
+.cat-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 200px;
+    margin-top: 10px;
+}
+
+.cat-container {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.cat-img {
+    width: 160px;
+    height: auto;
+    image-rendering: pixelated;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+.cat-container:hover .cat-img {
+    filter: drop-shadow(0 6px 14px rgba(232, 134, 42, 0.35));
+}
+
+/* Cat jump animation on hover */
+.cat-jump {
+    animation: catJump 0.4s ease-out;
+}
+
+@keyframes catJump {
+    0% { transform: translateY(0); }
+    40% { transform: translateY(-200px); }
+    100% { transform: translateY(0); }
+}
+
+/* Cat attention animation (tail wag simulated via slight rotate) */
+.cat-attention {
+    animation: catAttention 0.3s ease-in-out 2;
+}
+
+@keyframes catAttention {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-3deg); }
+    75% { transform: rotate(3deg); }
+}
+
+/* Cat keyboard movement */
+.cat-container.moveable {
+    position: absolute;
+    bottom: 0;
+    transition: left 0.15s ease, transform 0.1s ease;
+}
+
+/* ===== SPEECH BUBBLE ===== */
+.speech-bubble {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--nebi-white);
+    border: 3px solid var(--nebi-orange);
+    border-radius: 4px;
+    padding: 8px 14px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    color: var(--nebi-dark);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+    image-rendering: pixelated;
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid var(--nebi-orange);
+}
+
+.speech-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--nebi-white);
+    z-index: 1;
+}
+
+.speech-bubble.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* ===== PIXEL DECORATIONS ===== */
+.pixel-decorations {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Fish decoration */
+.pixel-fish {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0.6;
+    image-rendering: pixelated;
+    animation: fishSwim linear infinite;
+    pointer-events: none;
+}
+
+@keyframes fishSwim {
+    0% { transform: translateX(-60px); }
+    100% { transform: translateX(calc(100vw + 60px)); }
+}
+
+.pixel-fish.reverse {
+    animation-name: fishSwimReverse;
+}
+
+@keyframes fishSwimReverse {
+    0% { transform: translateX(calc(100vw + 60px)) scaleX(-1); }
+    100% { transform: translateX(-60px) scaleX(-1); }
+}
+
+/* Paw prints */
+.paw-print {
+    position: fixed;
+    font-size: 18px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+    animation: pawAppear 2.5s ease-out forwards;
+    image-rendering: pixelated;
+}
+
+@keyframes pawAppear {
+    0% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+    15% { opacity: 0.7; transform: scale(1) rotate(-10deg); }
+    70% { opacity: 0.7; }
+    100% { opacity: 0; transform: scale(1) rotate(-10deg); }
+}
+
+/* Ball that appears on click */
+.pixel-ball {
+    position: fixed;
+    width: 16px;
+    height: 16px;
+    background: var(--nebi-orange);
+    border: 2px solid var(--nebi-dark);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+    animation: ballBounce 1.5s ease-out forwards;
+    image-rendering: pixelated;
+}
+
+@keyframes ballBounce {
+    0% { transform: scale(1); opacity: 1; }
+    25% { transform: translateY(30px) scale(0.9); }
+    50% { transform: translateY(-10px) scale(1.1); }
+    75% { transform: translateY(15px) scale(0.95); }
+    100% { transform: translateY(40px) scale(0.5); opacity: 0; }
+}
+
+/* Sparkle stars around sleeping cat */
+.sparkle {
+    position: absolute;
+    font-size: 14px;
+    opacity: 0;
+    animation: sparkle 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.sparkle:nth-child(odd) {
+    animation-delay: 0.7s;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 0.8; transform: scale(1.2); }
+}
+
+/* ZZZ animation */
+.zzz {
+    position: absolute;
+    top: -30px;
+    right: -10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    color: var(--nebi-orange);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.zzz.visible {
+    animation: zzzFloat 2s ease-in-out infinite;
+}
+
+@keyframes zzzFloat {
+    0% { opacity: 0; transform: translateY(0) translateX(0); }
+    30% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-30px) translateX(15px); }
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 16px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: var(--nebi-orange);
+    opacity: 0.7;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.footer-paw {
+    font-size: 14px;
+    image-rendering: pixelated;
+}
+
+/* ===== KEYBOARD MODE INDICATOR ===== */
+.keyboard-hint {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    color: var(--nebi-orange);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 10;
+    text-align: center;
+    pointer-events: none;
+}
+
+.keyboard-hint.visible {
+    opacity: 0.6;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .heading {
+        font-size: 16px;
+    }
+
+    .subtext {
+        font-size: 22px;
+    }
+
+    .logo {
+        width: 200px;
+    }
+
+    .cat-img {
+        width: 130px;
+    }
+
+    .speech-bubble {
+        font-size: 7px;
+        top: -50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .heading {
+        font-size: 12px;
+        line-height: 1.8;
+    }
+
+    .subtext {
+        font-size: 18px;
+    }
+
+    .logo {
+        width: 170px;
+    }
+
+    .cat-img {
+        width: 110px;
+    }
+
+    .main-container {
+        gap: 14px;
+    }
+}
+
+@media (max-height: 600px) {
+    .main-container {
+        gap: 10px;
+    }
+
+    .logo {
+        width: 160px;
+    }
+
+    .cat-img {
+        width: 100px;
+    }
+
+    .cat-area {
+        min-height: 130px;
+    }
+}
