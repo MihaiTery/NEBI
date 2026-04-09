@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEBI — Magazin</title>
+    <title>NEBI — Magazin | Configurator turn modular pentru pisici</title>
+    <meta name="description" content="Configureaza turnul NEBI perfect pentru pisica ta. Lemn masiv de brad, design modular, piese speciale cu sisal si sfoara. Livrare in Romania.">
     <link rel="icon" type="image/png" href="NEBI-LOGO.png">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="product">
+    <meta property="og:title" content="NEBI — Turnuri modulare pentru pisici | Magazin">
+    <meta property="og:description" content="Configureaza turnul perfect pentru pisica ta. Lemn masiv de brad, fara chimicale. 30% din profit merge la adaposturi.">
+    <meta property="og:image" content="NEBI-LOGO.png">
+    <meta property="og:locale" content="ro_RO">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="NEBI — Turnuri modulare pentru pisici | Magazin">
+    <meta name="twitter:description" content="Configureaza turnul perfect pentru pisica ta. Lemn masiv de brad, fara chimicale.">
+    <meta name="twitter:image" content="NEBI-LOGO.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -87,35 +101,22 @@
                 <!-- Controls -->
                 <div class="configurator-controls">
                     <div class="pixel-card config-panel">
-                        <h3>📐 Dimensiuni</h3>
+                        <h3>📐 Nivele</h3>
                         <div class="config-option">
-                            <span>Nivele</span>
+                            <span>Număr nivele</span>
                             <div class="config-stepper">
                                 <button id="levelMinus">-</button>
                                 <span class="stepper-value" id="levelCount">12</span>
                                 <button id="levelPlus">+</button>
                             </div>
                         </div>
-                        <div class="config-option">
-                            <span>Piese bază (60cm)</span>
-                            <div class="config-stepper">
-                                <button id="baseMinus">-</button>
-                                <span class="stepper-value" id="baseCount">2</span>
-                                <button id="basePlus">+</button>
-                            </div>
-                        </div>
+                        <p style="font-size: 13px; opacity: 0.6; margin-top: 8px;">
+                            Primele 2 nivele (4 piese de 60cm) sunt întotdeauna de bază. Minim 12 nivele.
+                        </p>
                     </div>
 
                     <div class="pixel-card config-panel">
                         <h3>✨ Piese speciale</h3>
-                        <div class="config-option">
-                            <span>Nivel cu platformă</span>
-                            <div class="config-stepper">
-                                <button id="platformMinus">-</button>
-                                <span class="stepper-value" id="platformCount">0</span>
-                                <button id="platformPlus">+</button>
-                            </div>
-                        </div>
                         <div class="config-option">
                             <span>🧶 Cu sisal (ascuțit gheare)</span>
                             <div class="config-stepper">
@@ -132,24 +133,20 @@
                                 <button id="ropePlus">+</button>
                             </div>
                         </div>
-                        <p style="font-family: 'VT323', monospace; font-size: 18px; opacity: 0.6; margin-top: 8px;">
-                            🔜 Mai multe piese speciale în curând prin colaborări!
+                        <p style="font-size: 13px; opacity: 0.6; margin-top: 8px;">
+                            Fiecare piesă specială adaugă +75 RON. 🔜 Mai multe prin colaborări!
                         </p>
                     </div>
 
                     <div class="pixel-card config-panel config-summary">
                         <h3>🧾 Sumar comandă</h3>
                         <div class="summary-row">
-                            <span>Piese standard (40cm):</span>
-                            <span id="summaryStandard">24 buc</span>
-                        </div>
-                        <div class="summary-row">
                             <span>Piese bază (60cm):</span>
-                            <span id="summaryBase">4 buc</span>
+                            <span>4 buc</span>
                         </div>
                         <div class="summary-row">
-                            <span>Piese platformă:</span>
-                            <span id="summaryPlatform">0 buc</span>
+                            <span>Piese standard (40cm):</span>
+                            <span id="summaryStandard">20 buc</span>
                         </div>
                         <div class="summary-row">
                             <span>Piese sisal:</span>

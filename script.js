@@ -45,36 +45,36 @@
     const SPEECH_MESSAGES_DEFAULT = [
         'Miau! 🐟',
         'Pssst... e secret!',
-        '🐟 Pește?',
-        'Hai, explorează!',
+        '🐟 Peste?',
+        'Hai, exploreaza!',
         '*purr purr*',
         'Sunt NEBI! 🧡'
     ];
 
     const SPEECH_MESSAGES_MISSION = [
-        'Ajută pisicuțele! 🧡',
+        'Ajuta pisicutele! 🧡',
         'Construim ceva frumos.',
-        'Fiecare turn salvează vieți!',
-        '30% merge la adăposturi!',
-        'Miau! Adoptă, nu cumpăra!',
-        '🐟 Pește?'
+        'Fiecare turn salveaza vieti!',
+        '30% merge la adaposturi!',
+        'Miau! Adopta, nu cumpara!',
+        '🐟 Peste?'
     ];
 
     const SPEECH_MESSAGES_SHOP = [
         'Vreau un turn mare!',
-        'Adaugă mai multe nivele!',
+        'Adauga mai multe nivele!',
         'Lemn natural, mmm... 🪵',
         'Asta e perfect pentru mine!',
-        'Vreau să mă cațăr!',
-        '🛒 Cumpără și pentru mine!'
+        'Vreau sa ma catar!',
+        '🛒 Cumpara si pentru mine!'
     ];
 
     const SPEECH_MESSAGES_COLLAB = [
-        'Hai să lucrăm împreună!',
+        'Hai sa lucram impreuna!',
         'Parteneriatele sunt 🧡',
-        'Mai mulți prieteni = mai bine!',
-        'Tu ai pisică?',
-        'NEBI iubește colaborările!',
+        'Mai multi prieteni = mai bine!',
+        'Tu ai pisica?',
+        'NEBI iubeste colaborarile!',
         '🤝 Miau!'
     ];
 
@@ -263,7 +263,7 @@
         const dy = e.clientY - (catRect.top + catRect.height / 2);
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        cat.style.transform = `scaleX(${dx < 0 ? -1 : 1})`;
+        catImg.style.transform = `scaleX(${dx < 0 ? -1 : 1})`;
 
         if (distance < 200 && distance > 50) {
             if (!catImg.classList.contains('cat-attention') && !catImg.classList.contains('cat-jump')) {
@@ -324,7 +324,7 @@
 
         const catRect = cat.getBoundingClientRect();
         const catCenterX = catRect.left + catRect.width / 2;
-        cat.style.transform = `scaleX(${x < catCenterX ? -1 : 1})`;
+        catImg.style.transform = `scaleX(${x < catCenterX ? -1 : 1})`;
 
         setTimeout(() => ball.remove(), 1500);
     }
@@ -402,11 +402,11 @@
 
         if (code === 'ArrowLeft') {
             catX -= step;
-            cat.style.transform = 'scaleX(-1)';
+            catImg.style.transform = 'scaleX(-1)';
             cat.style.left = `calc(50% - 80px + ${catX}px)`;
         } else if (code === 'ArrowRight') {
             catX += step;
-            cat.style.transform = 'scaleX(1)';
+            catImg.style.transform = 'scaleX(1)';
             cat.style.left = `calc(50% - 80px + ${catX}px)`;
         }
     }

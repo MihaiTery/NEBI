@@ -27,7 +27,7 @@ html, body {
 }
 
 body {
-    font-family: 'VT323', monospace;
+    font-family: 'Nunito', sans-serif;
     background-color: var(--nebi-bg);
     color: var(--nebi-dark);
     display: flex;
@@ -190,8 +190,8 @@ body {
 }
 
 .section-text {
-    font-family: 'VT323', monospace;
-    font-size: 24px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
     color: var(--nebi-dark);
     text-align: center;
     line-height: 1.6;
@@ -579,8 +579,8 @@ body {
 .pixel-table {
     width: 100%;
     border-collapse: collapse;
-    font-family: 'VT323', monospace;
-    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
     image-rendering: pixelated;
 }
 
@@ -647,8 +647,8 @@ body {
 }
 
 .mission-card .card-text {
-    font-family: 'VT323', monospace;
-    font-size: 22px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
     color: var(--nebi-dark);
     line-height: 1.4;
     opacity: 0.85;
@@ -705,15 +705,15 @@ body {
 }
 
 .campaign-date {
-    font-family: 'VT323', monospace;
-    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
     color: var(--nebi-dark);
     opacity: 0.6;
 }
 
 .campaign-desc {
-    font-family: 'VT323', monospace;
-    font-size: 22px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
     color: var(--nebi-dark);
     margin-bottom: 16px;
     line-height: 1.4;
@@ -732,8 +732,8 @@ body {
     background: var(--nebi-bg);
     border: 2px solid var(--nebi-orange);
     padding: 8px 14px;
-    font-family: 'VT323', monospace;
-    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
 }
 
 .campaign-cat .cat-emoji {
@@ -797,8 +797,8 @@ body {
 }
 
 .advantages-list li {
-    font-family: 'VT323', monospace;
-    font-size: 24px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
     padding: 8px 0;
     padding-left: 30px;
     position: relative;
@@ -1015,8 +1015,8 @@ body {
     justify-content: space-between;
     padding: 10px 0;
     border-bottom: 1px dashed var(--nebi-grid);
-    font-family: 'VT323', monospace;
-    font-size: 22px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
 }
 
 .config-option:last-child {
@@ -1065,8 +1065,8 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 8px 0;
-    font-family: 'VT323', monospace;
-    font-size: 22px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
     border-bottom: 1px dashed var(--nebi-grid);
 }
 
@@ -1118,8 +1118,8 @@ body {
 }
 
 .collab-type-card .card-text {
-    font-family: 'VT323', monospace;
-    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
     line-height: 1.4;
     opacity: 0.8;
 }
@@ -1249,8 +1249,8 @@ body {
 .form-group select {
     width: 100%;
     padding: 12px 16px;
-    font-family: 'VT323', monospace;
-    font-size: 22px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
     color: var(--nebi-dark);
     background: var(--nebi-white);
     border: 3px solid var(--nebi-orange);
@@ -1289,8 +1289,8 @@ body {
 }
 
 .media-desc p {
-    font-family: 'VT323', monospace;
-    font-size: 22px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
     line-height: 1.5;
     color: var(--nebi-dark);
 }
