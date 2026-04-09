@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEBI — Magazin</title>
+    <link rel="icon" type="image/png" href="NEBI-LOGO.png">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="pixel-grid-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <img src="NEBI-LOGO.png" alt="NEBI">
+            <span>NEBI</span>
+        </a>
+        <button class="nav-toggle" id="navToggle">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Misiune</a></li>
+            <li><a href="magazin.html" class="active">Magazin</a></li>
+            <li><a href="colaborari.html">Colaborari</a></li>
+        </ul>
+    </nav>
+
+    <div class="page">
+
+        <!-- Product Hero -->
+        <section class="section">
+            <h2 class="section-title">🏠 Turnul NEBI</h2>
+
+            <div class="product-hero">
+                <div class="product-image-placeholder">
+                    <span class="placeholder-icon">📷</span>
+                    <span>Imagine produs</span>
+                    <span style="font-size: 8px;">(în curând)</span>
+                </div>
+                <div class="product-info">
+                    <h2>Turnul modular<br>din lemn de brad</h2>
+                    <div class="price">2490 RON <small>/ configurația de bază</small></div>
+                    <ul class="advantages-list">
+                        <li>Lemn masiv de brad 100% natural</li>
+                        <li>Fără adezivi sau chimicale</li>
+                        <li>Montaj ușor, ca un set LEGO</li>
+                        <li>Design modular — adaugi piese oricând</li>
+                        <li>1.2m înălțime, extrem de stabil</li>
+                        <li>Ideal pentru ascuțitul ghearelor</li>
+                        <li>patut extra-confortabil inclus in varf!</li>
+                    </ul>
+                    <a href="#configurator" class="pixel-btn">Configurează ↓</a>
+                </div>
+            </div>
+
+            <!-- More product images placeholders -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 30px;">
+                <div class="product-image-placeholder" style="aspect-ratio: 4/3;">
+                    <span class="placeholder-icon">🐱</span>
+                    <span style="font-size: 8px;">Pisică pe turn</span>
+                </div>
+                <div class="product-image-placeholder" style="aspect-ratio: 4/3;">
+                    <span class="placeholder-icon">🪵</span>
+                    <span style="font-size: 8px;">Detaliu lemn</span>
+                </div>
+                <div class="product-image-placeholder" style="aspect-ratio: 4/3;">
+                    <span class="placeholder-icon">📦</span>
+                    <span style="font-size: 8px;">Pachet livrare</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configurator -->
+        <section class="section configurator-section" id="configurator">
+            <h2 class="section-title">🧩 Configurează turnul perfect</h2>
+            <p class="section-text">Construiește turnul ideal pentru pisica ta. Adaugă sau elimină nivele, alege piese speciale.</p>
+
+            <div class="configurator-wrapper">
+                <!-- Tower Preview Canvas -->
+                <div class="configurator-canvas pixel-card">
+                    <div class="tower-preview" id="towerPreview">
+                        <!-- Tower will be built here by JS -->
+                    </div>
+                    <div class="tower-height-label" id="towerHeight">Înălțime: 1.2m</div>
+                </div>
+
+                <!-- Controls -->
+                <div class="configurator-controls">
+                    <div class="pixel-card config-panel">
+                        <h3>📐 Dimensiuni</h3>
+                        <div class="config-option">
+                            <span>Nivele</span>
+                            <div class="config-stepper">
+                                <button id="levelMinus">-</button>
+                                <span class="stepper-value" id="levelCount">12</span>
+                                <button id="levelPlus">+</button>
+                            </div>
+                        </div>
+                        <div class="config-option">
+                            <span>Piese bază (60cm)</span>
+                            <div class="config-stepper">
+                                <button id="baseMinus">-</button>
+                                <span class="stepper-value" id="baseCount">2</span>
+                                <button id="basePlus">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pixel-card config-panel">
+                        <h3>✨ Piese speciale</h3>
+                        <div class="config-option">
+                            <span>Nivel cu platformă</span>
+                            <div class="config-stepper">
+                                <button id="platformMinus">-</button>
+                                <span class="stepper-value" id="platformCount">0</span>
+                                <button id="platformPlus">+</button>
+                            </div>
+                        </div>
+                        <div class="config-option">
+                            <span>🧶 Cu sisal (ascuțit gheare)</span>
+                            <div class="config-stepper">
+                                <button id="sisalMinus">-</button>
+                                <span class="stepper-value" id="sisalCount">0</span>
+                                <button id="sisalPlus">+</button>
+                            </div>
+                        </div>
+                        <div class="config-option">
+                            <span>🪢 Cu sfoară (joacă)</span>
+                            <div class="config-stepper">
+                                <button id="ropeMinus">-</button>
+                                <span class="stepper-value" id="ropeCount">0</span>
+                                <button id="ropePlus">+</button>
+                            </div>
+                        </div>
+                        <p style="font-family: 'VT323', monospace; font-size: 18px; opacity: 0.6; margin-top: 8px;">
+                            🔜 Mai multe piese speciale în curând prin colaborări!
+                        </p>
+                    </div>
+
+                    <div class="pixel-card config-panel config-summary">
+                        <h3>🧾 Sumar comandă</h3>
+                        <div class="summary-row">
+                            <span>Piese standard (40cm):</span>
+                            <span id="summaryStandard">24 buc</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Piese bază (60cm):</span>
+                            <span id="summaryBase">4 buc</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Piese platformă:</span>
+                            <span id="summaryPlatform">0 buc</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Piese sisal:</span>
+                            <span id="summarySisal">0 buc</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Piese sfoară:</span>
+                            <span id="summaryRope">0 buc</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Înălțime totală:</span>
+                            <span id="summaryHeight">1.2m</span>
+                        </div>
+                        <div class="summary-total">
+                            <span>TOTAL:</span>
+                            <span id="summaryTotal">249 RON</span>
+                        </div>
+                        <div style="margin-top: 16px; text-align: center;">
+                            <button class="pixel-btn" id="buyBtn" style="width: 100%;">
+                                🛒 Comandă acum
+                            </button>
+                        </div>
+                        <p style="font-family: 'VT323', monospace; font-size: 16px; opacity: 0.5; margin-top: 8px; text-align: center;">
+                            30% din profit → adăposturi de animale 🧡
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cat area -->
+        <div class="cat-area">
+            <div class="cat-container" id="cat">
+                <div class="speech-bubble" id="speechBubble">
+                    <span id="speechText"></span>
+                </div>
+                <img src="PHASE 1.png" alt="NEBI Cat" class="cat-img" id="catImg">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="pixel-decorations" id="decorations"></div>
+
+    <footer class="footer">
+        <span class="footer-paw">🐾</span>
+        <span class="footer-text">NEBI — turnuri pentru pisici, cu suflet</span>
+        <span class="footer-paw">🐾</span>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="configurator.js"></script>
+</body>
+</html>
