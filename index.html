@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEBI — Coming Soon</title>
+    <title>NEBI — Turnuri pentru pisici, cu suflet</title>
     <link rel="icon" type="image/png" href="NEBI-LOGO.png">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -11,29 +11,213 @@
 <body>
     <div class="pixel-grid-bg"></div>
 
-    <main class="main-container">
-        <div class="logo-container">
-            <img src="NEBI-LOGO.png" alt="NEBI Logo" class="logo">
-        </div>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <img src="NEBI-LOGO.png" alt="NEBI">
+            <span>NEBI</span>
+        </a>
+        <button class="nav-toggle" id="navToggle">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active">Misiune</a></li>
+            <li><a href="magazin.html">Magazin</a></li>
+            <li><a href="colaborari.html">Colaborari</a></li>
+        </ul>
+    </nav>
 
-        <h1 class="heading">Pregătim ceva frumos.</h1>
-        <p class="subtext">NEBI pregătește un nou teritoriu de explorat pentru pisici.</p>
+    <!-- Page content -->
+    <div class="page">
 
-        <div class="cat-area">
-            <div class="cat-container" id="cat">
-                <div class="speech-bubble" id="speechBubble">
-                    <span id="speechText"></span>
-                </div>
-                <img src="PHASE 1.png" alt="NEBI Cat" class="cat-img" id="catImg">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="logo-container">
+                <img src="NEBI-LOGO.png" alt="NEBI Logo" class="logo">
             </div>
-        </div>
-    </main>
+            <h1 class="heading">Un turn pentru pisici.<br>O misiune pentru suflet.</h1>
+            <p class="subtext">NEBI construiește turnuri modulare din lemn masiv pentru pisicile tale — și ajută pisicile fără stăpân să își găsească o familie.</p>
+
+            <div class="cat-area">
+                <div class="cat-container" id="cat">
+                    <div class="speech-bubble" id="speechBubble">
+                        <span id="speechText"></span>
+                    </div>
+                    <img src="PHASE 1.png" alt="NEBI Cat" class="cat-img" id="catImg">
+                </div>
+            </div>
+        </section>
+
+        <!-- Produs -->
+        <section class="section fade-in">
+            <h2 class="section-title">🏗️ Produsul NEBI</h2>
+            <p class="section-text">
+                Turnurile NEBI sunt realizate integral din lemn masiv de brad, fără adezivi sau substanțe chimice,
+                folosind îmbinări naturale din lemn pentru o structură solidă și sigură.
+            </p>
+
+            <div class="mission-grid">
+                <div class="pixel-card mission-card">
+                    <span class="card-icon">🪵</span>
+                    <h3 class="card-title">Lemn natural de brad</h3>
+                    <p class="card-text">Încurajează felinele să își ascută ghearele în mod natural. Fără tratamente chimice, sigur pentru pisica ta.</p>
+                </div>
+                <div class="pixel-card mission-card">
+                    <span class="card-icon">🧩</span>
+                    <h3 class="card-title">Design modular</h3>
+                    <p class="card-text">Asemenea unui set LEGO — montezi ușor, personalizezi după nevoie. Extrem de rezistent și adaptabil în timp.</p>
+                </div>
+                <div class="pixel-card mission-card">
+                    <span class="card-icon">📏</span>
+                    <h3 class="card-title">1.2m înălțime</h3>
+                    <p class="card-text">20 piese de 40×10×10cm + 4 piese de bază de 60×10×10cm. Construcție modulara, două piese pe nivel.</p>
+                </div>
+                <div class="pixel-card mission-card">
+                    <span class="card-icon">♻️</span>
+                    <h3 class="card-title">Cu respect pentru natură</h3>
+                    <p class="card-text">Creat cu respect pentru animale și pentru mediu. Un produs care rămâne parte din casa ta ani la rând.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="magazin.html" class="pixel-btn">Configurează turnul tău →</a>
+            </div>
+        </section>
+
+        <!-- Misiune socială -->
+        <section class="section fade-in">
+            <h2 class="section-title">🐾 Misiunea noastră</h2>
+            <p class="section-text">
+                30% din profitul NEBI este direcționat către organizații care ajută animalele fără adăpost.
+                Folosim sisteme moderne de trasabilitate pentru a lega fiecare comandă de donațiile realizate,
+                oferind transparență totală asupra modului în care contribuția comunității ajunge la animalele care au nevoie de ajutor.
+            </p>
+
+            <div class="donation-counter">
+                <div class="counter-item">
+                    <span class="counter-number" data-target="0">0</span>
+                    <span class="counter-label">RON donați</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-number" data-target="0">0</span>
+                    <span class="counter-label">Animale ajutate</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-number" data-target="0">0</span>
+                    <span class="counter-label">Adăposturi partenere</span>
+                </div>
+            </div>
+
+            <p class="section-text" style="opacity: 0.6; font-size: 20px;">
+                📊 Aceste cifre vor fi actualizate pe măsură ce comunitatea NEBI crește.
+            </p>
+        </section>
+
+        <!-- Tabel donații -->
+        <section class="section fade-in">
+            <h2 class="section-title">💰 Transparență donații</h2>
+            <p class="section-text">Fiecare donație este raportată public. Iată cum sunt folosiți banii din profitul NEBI:</p>
+
+            <div class="pixel-table-wrapper">
+                <table class="pixel-table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Asociația / ONG</th>
+                            <th>Suma donată</th>
+                            <th>Detalii</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" style="text-align: center; opacity: 0.5; font-family: 'Press Start 2P', cursive; font-size: 9px; padding: 30px;">
+                                🐱 Încă nu avem donații de raportat.<br>Fii primul care contribuie cumpărând un turn NEBI!
+                            </td>
+                        </tr>
+                        <!-- Exemplu de cum va arăta:
+                        <tr>
+                            <td>15.04.2026</td>
+                            <td>Asociația Prietenii Animalelor</td>
+                            <td>500 RON</td>
+                            <td>Hrană și medicamente</td>
+                        </tr>
+                        -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Campanii & Adopții -->
+        <section class="section fade-in">
+            <h2 class="section-title">📢 Campanii & Adopții</h2>
+            <p class="section-text">
+                Animalele fără stăpân vor fi parte din povestea NEBI. În campaniile noastre, ele apar alături de turnurile
+                pentru pisici, iar fiecare reclamă devine o oportunitate reală de adopție.
+            </p>
+
+            <!-- Campanie exemplu -->
+            <div class="pixel-card campaign-card">
+                <div class="campaign-header">
+                    <h3 class="campaign-title">🚧 Prima campanie — în pregătire</h3>
+                    <span class="campaign-date">2026</span>
+                </div>
+                <p class="campaign-desc">
+                    Pregătim prima campanie NEBI! Vom colabora cu adăposturi locale pentru a prezenta
+                    pisicuțe care își caută o familie. Fiecare reclamă stradală, fiecare postare — o șansă la adopție.
+                </p>
+                <div class="campaign-cats">
+                    <div class="campaign-cat">
+                        <span class="cat-emoji">🐱</span>
+                        <span>În curând vei vedea aici pisicuțe care își caută casă...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplu de campanie completă (comentat, pentru referință)
+            <div class="pixel-card campaign-card">
+                <div class="campaign-header">
+                    <h3 class="campaign-title">Campania "Adoptă cu NEBI" — București</h3>
+                    <span class="campaign-date">15.05.2026</span>
+                </div>
+                <p class="campaign-desc">
+                    Reclamă stradală în zona Universitate. 4 pisicuțe din adăpostul "Prietenii Felinelor"
+                    au fost prezentate publicului larg.
+                </p>
+                <div class="campaign-cats">
+                    <div class="campaign-cat">
+                        <span class="cat-emoji">🐱</span>
+                        <span>Mițu</span>
+                        <span class="status-adopted">✓ ADOPTAT</span>
+                    </div>
+                    <div class="campaign-cat">
+                        <span class="cat-emoji">🐱</span>
+                        <span>Bella</span>
+                        <span class="status-adopted">✓ ADOPTATĂ</span>
+                    </div>
+                    <div class="campaign-cat">
+                        <span class="cat-emoji">🐱</span>
+                        <span>Pufos</span>
+                        <span class="status-waiting">⏳ AȘTEAPTĂ</span>
+                    </div>
+                    <div class="campaign-cat">
+                        <span class="cat-emoji">🐱</span>
+                        <span>Luna</span>
+                        <span class="status-adopted">✓ ADOPTATĂ</span>
+                    </div>
+                </div>
+            </div>
+            -->
+
+            <p class="section-text" style="margin-top: 20px;">
+                Scopul nostru este să folosim vizibilitatea brandului pentru a ajuta cât mai multe animale să își găsească o familie. 🧡
+            </p>
+        </section>
+
+    </div>
 
     <div class="pixel-decorations" id="decorations"></div>
 
     <footer class="footer">
         <span class="footer-paw">🐾</span>
-        <span class="footer-text">NEBI — coming soon</span>
+        <span class="footer-text">NEBI — turnuri pentru pisici, cu suflet</span>
         <span class="footer-paw">🐾</span>
     </footer>
 

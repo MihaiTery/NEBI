@@ -1,4 +1,4 @@
-/* ===== NEBI Coming Soon — Interactive Script ===== */
+/* ===== NEBI — Interactive Script (Multi-page) ===== */
 
 (function () {
     'use strict';
@@ -41,26 +41,79 @@
     let runCycleInterval = null;
     let runCycleFrame = 0;
 
-    // --- Speech messages ---
-    const SPEECH_MESSAGES = [
-        'Mai ai puțină răbdare.',
-        'Construim ceva pentru mine.',
-        'Miau! Vino mai târziu.',
-        'Se lucrează...',
+    // --- Speech messages (context-aware) ---
+    const SPEECH_MESSAGES_DEFAULT = [
+        'Miau! 🐟',
         'Pssst... e secret!',
+        '🐟 Pește?',
+        'Hai, explorează!',
+        '*purr purr*',
+        'Sunt NEBI! 🧡'
+    ];
+
+    const SPEECH_MESSAGES_MISSION = [
+        'Ajută pisicuțele! 🧡',
+        'Construim ceva frumos.',
+        'Fiecare turn salvează vieți!',
+        '30% merge la adăposturi!',
+        'Miau! Adoptă, nu cumpăra!',
         '🐟 Pește?'
     ];
 
+    const SPEECH_MESSAGES_SHOP = [
+        'Vreau un turn mare!',
+        'Adaugă mai multe nivele!',
+        'Lemn natural, mmm... 🪵',
+        'Asta e perfect pentru mine!',
+        'Vreau să mă cațăr!',
+        '🛒 Cumpără și pentru mine!'
+    ];
+
+    const SPEECH_MESSAGES_COLLAB = [
+        'Hai să lucrăm împreună!',
+        'Parteneriatele sunt 🧡',
+        'Mai mulți prieteni = mai bine!',
+        'Tu ai pisică?',
+        'NEBI iubește colaborările!',
+        '🤝 Miau!'
+    ];
+
+    function getSpeechMessages() {
+        const path = window.location.pathname;
+        if (path.includes('magazin')) return SPEECH_MESSAGES_SHOP;
+        if (path.includes('colaborari')) return SPEECH_MESSAGES_COLLAB;
+        if (path.includes('index') || path.endsWith('/')) return SPEECH_MESSAGES_MISSION;
+        return SPEECH_MESSAGES_DEFAULT;
+    }
+
     // --- Initialize ---
     function init() {
+        if (!cat || !catImg) return; // safety check
+
         setupMouseTracking();
         setupCatClick();
         setupPageClick();
         setupKeyboard();
         startIdleState();
-        spawnFish();
-        spawnPawPrints();
         preloadImages();
+
+        // Decorations (all pages)
+        if (decorations) {
+            spawnFish();
+        }
+        spawnPawPrints();
+
+        // Navigation toggle (mobile)
+        setupNavToggle();
+
+        // Scroll animations
+        setupScrollAnimations();
+
+        // Copy button (colaborari page)
+        setupCopyButton();
+
+        // Form handler (colaborari page)
+        setupCollabForm();
     }
 
     function preloadImages() {
@@ -75,12 +128,9 @@
     function enterState(newState) {
         if (currentState === newState) return;
 
-        // Exit previous state
         exitState(currentState);
-
         currentState = newState;
 
-        // Enter new state
         switch (newState) {
             case STATE_IDLE:
                 startIdleCycle();
@@ -96,7 +146,6 @@
                 catImg.classList.add('cat-jump');
                 setTimeout(() => {
                     catImg.classList.remove('cat-jump');
-                    // Return to previous context after jump
                     if (keysPressed['ArrowLeft'] || keysPressed['ArrowRight']) {
                         enterState(STATE_RUNNING);
                     } else {
@@ -126,7 +175,6 @@
         }
     }
 
-    // --- Idle State: cycle Phase 1 ↔ Phase 2 ---
     function startIdleState() {
         enterState(STATE_IDLE);
     }
@@ -145,7 +193,6 @@
         idleCycleInterval = null;
     }
 
-    // --- Run State: cycle RUN PHASE 1 ↔ RUN PHASE 2 ---
     function startRunCycle() {
         runCycleFrame = 0;
         catImg.src = SPRITES.RUN_1;
@@ -160,7 +207,6 @@
         runCycleInterval = null;
     }
 
-    // --- Sleep: 10s inactivity ---
     function startIdleTimer() {
         clearTimeout(idleTimer);
         idleTimer = setTimeout(() => {
@@ -173,7 +219,6 @@
         if (currentState === STATE_SLEEPING) {
             enterState(STATE_IDLE);
         } else if (currentState === STATE_IDLE) {
-            // Restart the 10s countdown
             startIdleTimer();
         }
     }
@@ -193,7 +238,6 @@
         if (zzz) zzz.remove();
     }
 
-    // --- Wake up from any state to idle ---
     function wakeUp() {
         enterState(STATE_IDLE);
     }
@@ -219,10 +263,8 @@
         const dy = e.clientY - (catRect.top + catRect.height / 2);
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Face toward mouse
         cat.style.transform = `scaleX(${dx < 0 ? -1 : 1})`;
 
-        // Attention animation when mouse is nearby
         if (distance < 200 && distance > 50) {
             if (!catImg.classList.contains('cat-attention') && !catImg.classList.contains('cat-jump')) {
                 catImg.classList.add('cat-attention');
@@ -236,15 +278,10 @@
         cat.addEventListener('click', (e) => {
             e.stopPropagation();
             wakeUp();
-
-            // Jump
             enterState(STATE_JUMPING);
-
-            // Show speech bubble
             showSpeechBubble();
         });
 
-        // Hover jump
         cat.addEventListener('mouseenter', () => {
             if (currentState === STATE_IDLE) {
                 catImg.classList.remove('cat-jump');
@@ -257,7 +294,8 @@
 
     function showSpeechBubble() {
         clearTimeout(speechTimer);
-        const msg = SPEECH_MESSAGES[Math.floor(Math.random() * SPEECH_MESSAGES.length)];
+        const messages = getSpeechMessages();
+        const msg = messages[Math.floor(Math.random() * messages.length)];
         speechText.textContent = msg;
         speechBubble.classList.add('visible');
 
@@ -270,6 +308,8 @@
     function setupPageClick() {
         document.addEventListener('click', (e) => {
             if (cat.contains(e.target)) return;
+            // Don't spawn balls when clicking interactive elements
+            if (e.target.closest('a, button, input, select, textarea, .config-stepper')) return;
             resetIdleTimer();
             spawnBall(e.clientX, e.clientY);
         });
@@ -282,7 +322,6 @@
         ball.style.top = y - 8 + 'px';
         document.body.appendChild(ball);
 
-        // Cat looks at ball
         const catRect = cat.getBoundingClientRect();
         const catCenterX = catRect.left + catRect.width / 2;
         cat.style.transform = `scaleX(${x < catCenterX ? -1 : 1})`;
@@ -300,6 +339,9 @@
 
         document.addEventListener('keydown', (e) => {
             if (['ArrowLeft', 'ArrowRight', 'Space'].includes(e.code)) {
+                // Don't hijack keyboard in form inputs
+                if (e.target.matches('input, textarea, select')) return;
+
                 e.preventDefault();
 
                 const wasPressed = keysPressed[e.code];
@@ -316,13 +358,11 @@
                         enterState(STATE_JUMPING);
                     }
                 } else if (!wasPressed) {
-                    // Start running on first press
                     if (currentState !== STATE_JUMPING) {
                         enterState(STATE_RUNNING);
                     }
                     handleMovement(e.code);
                 } else {
-                    // Repeated keydown (held key)
                     handleMovement(e.code);
                 }
             }
@@ -331,7 +371,6 @@
         document.addEventListener('keyup', (e) => {
             keysPressed[e.code] = false;
 
-            // If no arrow keys held and not jumping, return to idle
             if ((e.code === 'ArrowLeft' || e.code === 'ArrowRight') &&
                 !keysPressed['ArrowLeft'] && !keysPressed['ArrowRight'] &&
                 currentState === STATE_RUNNING) {
@@ -343,9 +382,11 @@
     function activateKeyboardMode() {
         isKeyboardMode = true;
 
-        const catArea = document.querySelector('.cat-area');
-        catArea.style.position = 'relative';
-        catArea.style.width = '100%';
+        const catArea = cat.closest('.cat-area');
+        if (catArea) {
+            catArea.style.position = 'relative';
+            catArea.style.width = '100%';
+        }
 
         cat.classList.add('moveable');
         catX = 0;
@@ -409,6 +450,68 @@
         }
 
         setInterval(createPaw, 3000 + Math.random() * 3000);
+    }
+
+    // --- Navigation toggle (mobile) ---
+    function setupNavToggle() {
+        const toggle = document.getElementById('navToggle');
+        const links = document.getElementById('navLinks');
+        if (!toggle || !links) return;
+
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('open');
+            toggle.textContent = links.classList.contains('open') ? '✕' : '☰';
+        });
+
+        // Close on link click
+        links.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                links.classList.remove('open');
+                toggle.textContent = '☰';
+            });
+        });
+    }
+
+    // --- Scroll animations ---
+    function setupScrollAnimations() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        if (!fadeElements.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+    }
+
+    // --- Copy media description ---
+    function setupCopyButton() {
+        const btn = document.getElementById('copyMediaDesc');
+        if (!btn) return;
+
+        btn.addEventListener('click', () => {
+            const desc = btn.closest('.media-desc').querySelector('p');
+            navigator.clipboard.writeText(desc.textContent.trim()).then(() => {
+                btn.textContent = '✓ COPIAT';
+                setTimeout(() => { btn.textContent = 'COPIAZĂ'; }, 2000);
+            });
+        });
+    }
+
+    // --- Collaboration form ---
+    function setupCollabForm() {
+        const form = document.getElementById('collabForm');
+        if (!form) return;
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('🐱 Mulțumim pentru propunere!\n\nFormularul va fi conectat la un serviciu de email în curând.\nÎntre timp, ne poți contacta direct.');
+            form.reset();
+        });
     }
 
     // --- Touch Support (mobile) ---
