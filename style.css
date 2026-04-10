@@ -835,150 +835,75 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    padding: 20px;
+    padding: 40px 20px 20px;
     overflow: hidden;
 }
 
+/* === IMAGE-BASED TOWER === */
 .configurator-canvas .tower-preview {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    gap: 2px;
     position: relative;
+    padding: 10px 0;
 }
 
-.tower-level {
+.tower-level-img {
+    position: relative;
     display: flex;
-    gap: 4px;
-    transition: all 0.3s ease;
-    position: relative;
+    justify-content: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    margin-bottom: -4px;
 }
 
-.tower-level.horizontal .tower-piece {
-    width: 80px;
-    height: 20px;
-}
-
-.tower-level.vertical .tower-piece {
-    width: 20px;
-    height: 80px;
-}
-
-.tower-level.vertical {
-    gap: 40px;
-}
-
-.tower-piece {
+.tower-level-img img {
     image-rendering: pixelated;
-    transition: all 0.2s ease;
-    position: relative;
-    border: 2px solid var(--nebi-dark);
+    display: block;
+    pointer-events: none;
 }
 
-.tower-piece.wood-brad {
-    background: linear-gradient(
-        135deg,
-        #D4A574 0%,
-        #C49660 20%,
-        #D4A574 40%,
-        #B8885A 60%,
-        #D4A574 80%,
-        #C49660 100%
-    );
+/* Base level */
+.tower-level-img.tower-base img {
+    width: 180px;
+    height: auto;
 }
 
-.tower-piece.wood-brad::after {
-    content: '';
-    position: absolute;
-    inset: 2px;
-    background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        rgba(0,0,0,0.05) 3px,
-        rgba(0,0,0,0.05) 4px
-    );
+/* Par level (lateral view - single long piece) */
+.tower-level-img.tower-par img {
+    width: 120px;
+    height: auto;
 }
 
-.tower-piece.base-piece {
-    width: 120px !important;
-    height: 20px !important;
-    background: linear-gradient(
-        135deg,
-        #C49660 0%,
-        #B8885A 30%,
-        #C49660 60%,
-        #A77B4F 100%
-    );
+/* Impar level (front view - 2 ends) */
+.tower-level-img.tower-impar img {
+    width: 100px;
+    height: auto;
 }
 
-.tower-piece.special {
-    background: linear-gradient(
-        135deg,
-        var(--nebi-orange-light) 0%,
-        var(--nebi-orange) 50%,
-        var(--nebi-orange-light) 100%
-    );
-    border-color: var(--nebi-dark);
+/* Pat pisica (top piece) */
+.tower-level-img.tower-pat img {
+    width: 130px;
+    height: auto;
 }
 
-.tower-piece.sisal-piece {
-    background: linear-gradient(
-        0deg,
-        #C8A96E 0%,
-        #D4B87A 15%,
-        #BFA060 30%,
-        #D4B87A 45%,
-        #C8A96E 60%,
-        #D4B87A 75%,
-        #BFA060 90%,
-        #C8A96E 100%
-    );
-    border-color: #8B7340;
+/* Special piece highlight — sisal: warm golden glow */
+.tower-level-img.special-sisal img,
+.tower-level-img[class*="special-left-sisal"] img,
+.tower-level-img[class*="special-right-sisal"] img {
+    filter: drop-shadow(0 0 6px rgba(200, 169, 110, 0.8)) brightness(1.1);
 }
 
-.tower-piece.sisal-piece::after {
-    content: '';
-    position: absolute;
-    inset: 1px;
-    background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 2px,
-        rgba(139, 115, 64, 0.3) 2px,
-        rgba(139, 115, 64, 0.3) 3px
-    );
+/* Special piece highlight — rope: brown/warm glow */
+.tower-level-img.special-rope img,
+.tower-level-img[class*="special-left-rope"] img,
+.tower-level-img[class*="special-right-rope"] img {
+    filter: drop-shadow(0 0 6px rgba(160, 120, 90, 0.8)) brightness(0.95) saturate(0.8);
 }
 
-.tower-piece.rope-piece {
-    background: linear-gradient(
-        45deg,
-        #A0785A 0%,
-        #B8906E 20%,
-        #A0785A 40%,
-        #C4A07A 60%,
-        #A0785A 80%,
-        #B8906E 100%
-    );
-    border-color: #6B4E38;
-}
-
-.tower-piece.rope-piece::after {
-    content: '';
-    position: absolute;
-    inset: 1px;
-    background: repeating-linear-gradient(
-        135deg,
-        transparent,
-        transparent 3px,
-        rgba(107, 78, 56, 0.25) 3px,
-        rgba(107, 78, 56, 0.25) 5px
-    );
-}
-
-.tower-piece:hover {
-    transform: scale(1.05);
+/* Hover on levels */
+.tower-level-img:hover img {
     filter: brightness(1.1);
+    transition: filter 0.15s ease;
 }
 
 /* Tower height indicator */

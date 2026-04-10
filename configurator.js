@@ -4,18 +4,22 @@
     'use strict';
 
     // --- Config state ---
-    // Total levels includes 2 base levels + standard levels
-    // At 12 levels: 2 base (4 pieces of 60cm) + 10 standard (20 pieces of 40cm) = 1.2m
     let levels = 12;        // total levels (min 12)
-    let sisalCount = 0;     // sisal pieces (for scratching)
-    let ropeCount = 0;      // rope pieces (for playing)
+    let sisalCount = 0;     // individual sisal pieces
+    let ropeCount = 0;      // individual rope pieces
 
     const BASE_LEVELS = 2;  // always 2 base levels (4 pieces of 60cm)
 
+    // --- Tower images ---
+    const IMG_BAZA = 'baza.png';
+    const IMG_PAR = 'nivel_par.png';
+    const IMG_IMPAR = 'nivel_impar.png';
+    const IMG_PAT = 'patpisica.png';
+
     // --- Pricing ---
-    const PRICE_BASE = 2490;        // base price for 12 levels
-    const PRICE_PER_EXTRA_LEVEL = 150; // per extra level above 12
-    const PRICE_PER_SPECIAL = 75;   // per sisal or rope piece
+    const PRICE_BASE = 2490;
+    const PRICE_PER_EXTRA_LEVEL = 150;
+    const PRICE_PER_SPECIAL = 75;
 
     const MIN_LEVELS = 12;
     const MAX_LEVELS = 20;
@@ -32,11 +36,42 @@
 
     if (!towerPreview) return;
 
+    // Preload images
+    [IMG_BAZA, IMG_PAR, IMG_IMPAR, IMG_PAT].forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+
     // --- Init ---
     function init() {
         setupSteppers();
         setupBuyButton();
         render();
+    }
+
+    // --- Helpers ---
+    function getStandardLevels() {
+        return levels - BASE_LEVELS;
+    }
+
+    function getTotalStandardPieces() {
+        return getStandardLevels() * 2;
+    }
+
+    function getMaxSpecials() {
+        return getTotalStandardPieces();
+    }
+
+    function clampSpecials() {
+        const max = getMaxSpecials();
+        const total = sisalCount + ropeCount;
+        if (total > max) {
+            const excess = total - max;
+            ropeCount = Math.max(0, ropeCount - excess);
+            if (sisalCount + ropeCount > max) {
+                sisalCount = max - ropeCount;
+            }
+        }
     }
 
     // --- Stepper controls ---
@@ -51,36 +86,20 @@
             if (sisalCount > 0) { sisalCount--; render(); }
         });
         document.getElementById('sisalPlus').addEventListener('click', () => {
-            if (sisalCount + ropeCount < getStandardLevels()) { sisalCount++; render(); }
+            if (sisalCount + ropeCount < getMaxSpecials()) { sisalCount++; render(); }
         });
         document.getElementById('ropeMinus').addEventListener('click', () => {
             if (ropeCount > 0) { ropeCount--; render(); }
         });
         document.getElementById('ropePlus').addEventListener('click', () => {
-            if (sisalCount + ropeCount < getStandardLevels()) { ropeCount++; render(); }
+            if (sisalCount + ropeCount < getMaxSpecials()) { ropeCount++; render(); }
         });
-    }
-
-    function getStandardLevels() {
-        return levels - BASE_LEVELS;
-    }
-
-    function clampSpecials() {
-        const maxSpecial = getStandardLevels();
-        const total = sisalCount + ropeCount;
-        if (total > maxSpecial) {
-            const excess = total - maxSpecial;
-            ropeCount = Math.max(0, ropeCount - excess);
-            if (sisalCount + ropeCount > maxSpecial) {
-                sisalCount = maxSpecial - ropeCount;
-            }
-        }
     }
 
     // --- Buy button ---
     function setupBuyButton() {
         document.getElementById('buyBtn').addEventListener('click', () => {
-            alert('🐱 Mulțumim pentru interes!\n\nSistemul de plată va fi disponibil în curând.\nFiecare achiziție contribuie la salvarea animalelor fără adăpost!');
+            alert('🐱 Multumim pentru interes!\n\nSistemul de plata va fi disponibil in curand.\nFiecare achizitie contribuie la salvarea animalelor fara adapost!');
         });
     }
 
@@ -94,77 +113,91 @@
     function renderTower() {
         towerPreview.innerHTML = '';
 
-        // Base levels (always 2)
-        for (let i = 0; i < BASE_LEVELS; i++) {
-            const level = createLevel('horizontal', 'base');
-            towerPreview.appendChild(level);
-        }
-
-        // Standard levels
+        // Build a flat list of individual piece types for special tracking
+        // Each "impar" level has 2 visible piece slots
         const stdLevels = getStandardLevels();
-        // Distribute specials: sisal at bottom, rope above
-        const specialMap = {};
-        let idx = 0;
-        for (let s = 0; s < sisalCount && idx < stdLevels; s++, idx++) {
-            specialMap[idx] = 'sisal';
-        }
-        for (let r = 0; r < ropeCount && idx < stdLevels; r++, idx++) {
-            specialMap[idx] = 'rope';
-        }
+        const pieceTypes = [];
+        for (let i = 0; i < sisalCount; i++) pieceTypes.push('sisal');
+        for (let i = 0; i < ropeCount; i++) pieceTypes.push('rope');
 
+        // Track which impar-level pieces are special
+        // Specials only apply to impar levels (where you see the 2 individual ends)
+        let specialIdx = 0;
+
+        // === BASE (always first, at the bottom) ===
+        const baseEl = document.createElement('div');
+        baseEl.className = 'tower-level-img tower-base';
+        const baseImg = document.createElement('img');
+        baseImg.src = IMG_BAZA;
+        baseImg.alt = 'Baza turn NEBI';
+        baseEl.appendChild(baseImg);
+        towerPreview.appendChild(baseEl);
+
+        // === STANDARD LEVELS (alternating par / impar) ===
+        // Level index 0 = first above base = par (lateral view)
+        // Level index 1 = impar (front view, 2 ends)
+        // ...alternating
         for (let i = 0; i < stdLevels; i++) {
-            const direction = i % 2 === 0 ? 'horizontal' : 'vertical';
-            const pieceType = specialMap[i] || 'standard';
-            const level = createLevel(direction, pieceType);
-            towerPreview.appendChild(level);
+            const isPar = i % 2 === 0;
+            const levelEl = document.createElement('div');
+
+            if (isPar) {
+                // Par level: single lateral piece image
+                levelEl.className = 'tower-level-img tower-par';
+
+                // Check if this par-level piece has a special overlay
+                if (specialIdx < pieceTypes.length) {
+                    levelEl.classList.add('special-' + pieceTypes[specialIdx]);
+                    specialIdx++;
+                }
+
+                const img = document.createElement('img');
+                img.src = IMG_PAR;
+                img.alt = 'Nivel par';
+                levelEl.appendChild(img);
+            } else {
+                // Impar level: two piece ends
+                levelEl.className = 'tower-level-img tower-impar';
+                const img = document.createElement('img');
+                img.src = IMG_IMPAR;
+                img.alt = 'Nivel impar';
+                levelEl.appendChild(img);
+
+                // Check specials for left and right piece
+                if (specialIdx < pieceTypes.length) {
+                    levelEl.classList.add('special-left-' + pieceTypes[specialIdx]);
+                    specialIdx++;
+                }
+                if (specialIdx < pieceTypes.length) {
+                    levelEl.classList.add('special-right-' + pieceTypes[specialIdx]);
+                    specialIdx++;
+                }
+            }
+
+            towerPreview.appendChild(levelEl);
         }
 
-        // Animate
-        const allLevels = towerPreview.querySelectorAll('.tower-level');
+        // === PAT PISICA (always on top, decorative, not a level) ===
+        const patEl = document.createElement('div');
+        patEl.className = 'tower-level-img tower-pat';
+        const patImg = document.createElement('img');
+        patImg.src = IMG_PAT;
+        patImg.alt = 'Patuc pisica';
+        patEl.appendChild(patImg);
+        towerPreview.appendChild(patEl);
+
+        // Pat does NOT count as a level — it's always present on top
+
+        // Animate in
+        const allLevels = towerPreview.querySelectorAll('.tower-level-img');
         allLevels.forEach((lvl, i) => {
             lvl.style.opacity = '0';
-            lvl.style.transform = 'scale(0.8)';
+            lvl.style.transform = 'translateY(10px)';
             setTimeout(() => {
                 lvl.style.opacity = '1';
-                lvl.style.transform = 'scale(1)';
+                lvl.style.transform = 'translateY(0)';
             }, i * 40);
         });
-    }
-
-    function createLevel(direction, pieceType) {
-        const level = document.createElement('div');
-        level.className = `tower-level ${direction}`;
-        level.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-
-        for (let p = 0; p < 2; p++) {
-            const piece = document.createElement('div');
-            let className = 'tower-piece';
-
-            switch (pieceType) {
-                case 'base':
-                    className += ' base-piece wood-brad';
-                    break;
-                case 'sisal':
-                    className += ' sisal-piece';
-                    break;
-                case 'rope':
-                    className += ' rope-piece';
-                    break;
-                default:
-                    className += ' wood-brad';
-            }
-
-            piece.className = className;
-
-            if (pieceType === 'standard' || pieceType === 'base') {
-                const grain = Math.floor(Math.random() * 3);
-                piece.style.filter = `brightness(${0.95 + grain * 0.03})`;
-            }
-
-            level.appendChild(piece);
-        }
-
-        return level;
     }
 
     function updateLabels() {
@@ -172,26 +205,21 @@
         document.getElementById('sisalCount').textContent = sisalCount;
         document.getElementById('ropeCount').textContent = ropeCount;
 
-        // Height: each level = 10cm
         const heightCm = levels * 10;
-        towerHeightLabel.textContent = `Înălțime: ${(heightCm / 100).toFixed(1)}m`;
+        towerHeightLabel.textContent = `Inaltime: ${(heightCm / 100).toFixed(1)}m`;
     }
 
     function updateSummary() {
-        const stdLevels = getStandardLevels();
-        const plainStandard = stdLevels - sisalCount - ropeCount;
-        const standardPieces = plainStandard * 2;
-        const sisalPieces = sisalCount * 2;
-        const ropePieces = ropeCount * 2;
+        const totalStdPieces = getTotalStandardPieces();
+        const plainStandard = totalStdPieces - sisalCount - ropeCount;
 
-        summaryStandard.textContent = `${standardPieces} buc`;
-        summarySisal.textContent = `${sisalPieces} buc`;
-        summaryRope.textContent = `${ropePieces} buc`;
+        summaryStandard.textContent = `${plainStandard} buc`;
+        summarySisal.textContent = `${sisalCount} buc`;
+        summaryRope.textContent = `${ropeCount} buc`;
 
         const heightCm = levels * 10;
         summaryHeight.textContent = `${(heightCm / 100).toFixed(1)}m`;
 
-        // Price
         const extraLevels = Math.max(0, levels - MIN_LEVELS);
         const specialCount = sisalCount + ropeCount;
         const total = PRICE_BASE
