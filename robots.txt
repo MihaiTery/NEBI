@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /plata/
 
 Sitemap: https://www.nebi.ro/sitemap.xml

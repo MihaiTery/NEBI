@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(ls -lh *.png)",
-      "WebFetch(domain:consumer-redress.ec.europa.eu)"
+      "WebFetch(domain:consumer-redress.ec.europa.eu)",
+      "WebSearch",
+      "WebFetch(domain:reclamatiisal.anpc.ro)",
+      "WebFetch(domain:anpc.ro)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:doc.netopia-payments.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }

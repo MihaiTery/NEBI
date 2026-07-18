@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panou comenzi | NEBI</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="../NEBI-LOGO.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="pixel-grid-bg"></div>
+
+    <nav class="nav">
+        <a href="../index.html" class="nav-logo">
+            <img src="../NEBI-LOGO.png" alt="NEBI" width="240" height="240">
+            <span>NEBI</span>
+        </a>
+        <ul class="nav-links">
+            <li><span class="admin-detail-summary" style="cursor:default;">Panou intern</span></li>
+            <li><button type="button" class="pixel-btn outline" id="logoutBtn" style="display:none;">Deconectare</button></li>
+        </ul>
+    </nav>
+
+    <div class="page">
+        <section class="section">
+
+            <!-- Login view -->
+            <div id="loginView">
+                <h2 class="section-title">🔒 Autentificare administrator</h2>
+                <form id="loginForm" class="admin-login-form">
+                    <div class="form-error-summary" id="loginError" role="alert"></div>
+                    <div class="form-group">
+                        <label for="loginUsername">Utilizator</label>
+                        <input type="text" id="loginUsername" name="username" autocomplete="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Parolă</label>
+                        <input type="password" id="loginPassword" name="password" autocomplete="current-password" required>
+                    </div>
+                    <button type="submit" class="pixel-btn" style="width:100%;">Autentificare</button>
+                </form>
+            </div>
+
+            <!-- Dashboard view -->
+            <div id="dashboardView" class="admin-shell" style="display:none;">
+                <h2 class="section-title">📋 Comenzi NEBI</h2>
+
+                <div class="admin-toolbar">
+                    <div class="form-group">
+                        <label for="filterSearch">Căutare (nr. comandă, nume, email)</label>
+                        <input type="text" id="filterSearch" placeholder="ex: NEBI-8K3F9QZ2">
+                    </div>
+                    <div class="form-group">
+                        <label for="filterPaymentStatus">Status plată</label>
+                        <select id="filterPaymentStatus">
+                            <option value="">Toate</option>
+                            <option value="pending">pending</option>
+                            <option value="processing">processing</option>
+                            <option value="paid">paid</option>
+                            <option value="failed">failed</option>
+                            <option value="cancelled">cancelled</option>
+                            <option value="expired">expired</option>
+                            <option value="partially_refunded">partially_refunded</option>
+                            <option value="refunded">refunded</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filterOrderStatus">Status comandă</label>
+                        <select id="filterOrderStatus">
+                            <option value="">Toate</option>
+                            <option value="new">new</option>
+                            <option value="confirmed">confirmed</option>
+                            <option value="in_production">in_production</option>
+                            <option value="ready_for_shipping">ready_for_shipping</option>
+                            <option value="shipped">shipped</option>
+                            <option value="completed">completed</option>
+                            <option value="cancelled">cancelled</option>
+                            <option value="returned">returned</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filterShippingStatus">Status livrare</label>
+                        <select id="filterShippingStatus">
+                            <option value="">Toate</option>
+                            <option value="not_prepared">not_prepared</option>
+                            <option value="ready">ready</option>
+                            <option value="handed_to_gls">handed_to_gls</option>
+                            <option value="in_transit">in_transit</option>
+                            <option value="delivered">delivered</option>
+                            <option value="delivery_exception">delivery_exception</option>
+                            <option value="returned">returned</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filterSort">Sortare dată</label>
+                        <select id="filterSort">
+                            <option value="desc">Recente primele</option>
+                            <option value="asc">Vechi primele</option>
+                        </select>
+                    </div>
+                    <button type="button" class="pixel-btn" id="applyFiltersBtn">Filtrează</button>
+                    <a class="pixel-btn outline" id="exportCsvLink" href="#">⬇ Export CSV</a>
+                </div>
+
+                <div class="pixel-table-wrapper">
+                    <table class="pixel-table">
+                        <thead>
+                            <tr>
+                                <th>Comandă</th>
+                                <th>Data</th>
+                                <th>Client</th>
+                                <th>Total</th>
+                                <th>Plată</th>
+                                <th>Comandă</th>
+                                <th>Livrare</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody"></tbody>
+                    </table>
+                </div>
+                <div id="ordersEmptyState" class="admin-empty-state" style="display:none;">Nicio comandă găsită.</div>
+
+                <!-- Order detail -->
+                <div id="orderDetail" class="pixel-card admin-order-detail" style="display:none; margin-top: 30px;">
+                    <button type="button" class="pixel-btn outline" id="closeDetailBtn" style="margin-bottom: 16px;">← Înapoi la listă</button>
+                    <h3 id="detailTitle"></h3>
+
+                    <dl class="checkout-info-style" id="detailInfo"></dl>
+
+                    <h4>Actualizare</h4>
+                    <form id="updateForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="editOrderStatus">Status comandă</label>
+                                <select id="editOrderStatus">
+                                    <option value="new">new</option>
+                                    <option value="confirmed">confirmed</option>
+                                    <option value="in_production">in_production</option>
+                                    <option value="ready_for_shipping">ready_for_shipping</option>
+                                    <option value="shipped">shipped</option>
+                                    <option value="completed">completed</option>
+                                    <option value="cancelled">cancelled</option>
+                                    <option value="returned">returned</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="editShippingStatus">Status livrare</label>
+                                <select id="editShippingStatus">
+                                    <option value="not_prepared">not_prepared</option>
+                                    <option value="ready">ready</option>
+                                    <option value="handed_to_gls">handed_to_gls</option>
+                                    <option value="in_transit">in_transit</option>
+                                    <option value="delivered">delivered</option>
+                                    <option value="delivery_exception">delivery_exception</option>
+                                    <option value="returned">returned</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="editAwb">AWB GLS</label>
+                                <input type="text" id="editAwb">
+                            </div>
+                            <div class="form-group">
+                                <label for="editTrackingUrl">URL tracking</label>
+                                <input type="text" id="editTrackingUrl">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editNotes">Note interne</label>
+                            <textarea id="editNotes"></textarea>
+                        </div>
+                        <button type="submit" class="pixel-btn">Salvează modificările</button>
+                        <span id="updateStatus" class="admin-inline-status"></span>
+                    </form>
+
+                    <details style="margin-top: 24px;">
+                        <summary class="admin-detail-summary">⚠ Marchează manual ca plătită (excepțional)</summary>
+                        <form id="markPaidForm" style="margin-top: 16px;">
+                            <div class="form-group">
+                                <label for="markPaidReason">Motiv (obligatoriu, minimum 10 caractere)</label>
+                                <textarea id="markPaidReason" required></textarea>
+                            </div>
+                            <button type="submit" class="pixel-btn outline">Marchează ca plătită</button>
+                            <span id="markPaidStatus" class="admin-inline-status"></span>
+                        </form>
+                    </details>
+
+                    <h4>Istoric plăți</h4>
+                    <div class="pixel-table-wrapper">
+                        <table class="pixel-table">
+                            <thead><tr><th>Furnizor</th><th>ID tranzacție</th><th>Status</th><th>Sumă</th><th>Inițiată</th></tr></thead>
+                            <tbody id="paymentsTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <h4>Jurnal (audit log)</h4>
+                    <div class="pixel-table-wrapper">
+                        <table class="pixel-table">
+                            <thead><tr><th>Data</th><th>Admin</th><th>Acțiune</th><th>Detalii</th></tr></thead>
+                            <tbody id="auditTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <div class="pixel-decorations" id="decorations" aria-hidden="true"></div>
+
+    <script src="../script.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizează comanda | NEBI</title>
+    <meta name="description" content="Finalizează comanda turnului NEBI: date de livrare, facturare și plată online securizată prin NETOPIA Payments.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://www.nebi.ro/checkout/">
+    <link rel="icon" type="image/png" href="../NEBI-LOGO.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="pixel-grid-bg"></div>
+
+    <nav class="nav">
+        <a href="../index.html" class="nav-logo">
+            <img src="../NEBI-LOGO.png" alt="NEBI" width="240" height="240">
+            <span>NEBI</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Meniu" aria-expanded="false" aria-controls="navLinks">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html">Misiune</a></li>
+            <li><a href="../magazin.html">Magazin</a></li>
+            <li><a href="../colaborari.html">Colaborari</a></li>
+        </ul>
+    </nav>
+
+    <div class="page">
+        <section class="section">
+            <h2 class="section-title">🧾 Finalizează comanda</h2>
+
+            <div id="noConfigNotice" class="form-error-summary" style="max-width: 700px; margin: 0 auto 24px;">
+                Nu am găsit o configurație de turn în sesiunea curentă.
+                <a href="../magazin.html#configurator">Întoarce-te la configurator</a> pentru a alege turnul dorit.
+            </div>
+
+            <div id="checkoutContent" style="display:none; max-width: 900px; margin: 0 auto;">
+
+                <div class="pixel-card config-panel" style="margin-bottom: 28px;">
+                    <h3>📐 Configurația ta</h3>
+                    <div class="summary-row"><span>Nivele totale:</span><span id="cfgLevels">…</span></div>
+                    <div class="summary-row"><span>Nivele suplimentare:</span><span id="cfgExtraLevels">…</span></div>
+                    <div class="summary-row"><span>Piese totale:</span><span id="cfgPieces">…</span></div>
+                    <div class="summary-row"><span>Piese sisal:</span><span id="cfgSisal">…</span></div>
+                    <div class="summary-row"><span>Piese sfoară:</span><span id="cfgRope">…</span></div>
+                    <div class="summary-row"><span>Preț configurație de bază:</span><span id="cfgBasePrice">…</span></div>
+                    <div class="summary-row"><span>Cost nivele suplimentare:</span><span id="cfgExtraPrice">…</span></div>
+                    <div class="summary-row"><span>Cost piese speciale:</span><span id="cfgSpecialsPrice">…</span></div>
+                    <div class="summary-row"><span>Livrare:</span><span>Inclusă</span></div>
+                    <div class="summary-total"><span>TOTAL (TVA inclus):</span><span id="cfgTotal">…</span></div>
+                    <p style="margin-top: 12px;"><a href="../magazin.html#configurator">✏️ Modifică configurația</a></p>
+                </div>
+
+                <form id="checkoutForm" novalidate>
+                    <div class="form-error-summary" id="formErrorSummary" role="alert"></div>
+
+                    <div class="form-section">
+                        <h3>👤 Tip client</h3>
+                        <div class="type-toggle">
+                            <label>
+                                <input type="radio" name="customerType" value="individual" checked>
+                                Persoană fizică
+                            </label>
+                            <label>
+                                <input type="radio" name="customerType" value="company">
+                                Persoană juridică
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-section" id="individualFields">
+                        <h3>📇 Datele tale</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Prenume</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Nume</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section" id="companyFields" style="display:none;">
+                        <h3>🏢 Date societate (pentru facturare)</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="companyName">Denumirea societății</label>
+                                <input type="text" id="companyName" name="companyName">
+                            </div>
+                            <div class="form-group">
+                                <label for="cui">CUI</label>
+                                <input type="text" id="cui" name="cui">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="regCom">Nr. Registrul Comerțului (opțional)</label>
+                            <input type="text" id="regCom" name="regCom">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>📞 Contact</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefon</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>🚚 Adresă de livrare (GLS, exclusiv România)</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="shipCounty">Județ</label>
+                                <input type="text" id="shipCounty" name="shipCounty" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="shipCity">Localitate</label>
+                                <input type="text" id="shipCity" name="shipCity" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipAddress">Adresă completă</label>
+                            <input type="text" id="shipAddress" name="shipAddress" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipPostalCode">Cod poștal</label>
+                            <input type="text" id="shipPostalCode" name="shipPostalCode" required>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>🧾 Adresă de facturare</h3>
+                        <div class="legal-checkbox-group">
+                            <input type="checkbox" id="billingSameAsShipping" checked>
+                            <label for="billingSameAsShipping">Adresa de facturare este identică cu adresa de livrare</label>
+                        </div>
+
+                        <div id="billingFields" style="display:none;">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="billingCounty">Județ</label>
+                                    <input type="text" id="billingCounty" name="billingCounty">
+                                </div>
+                                <div class="form-group">
+                                    <label for="billingCity">Localitate</label>
+                                    <input type="text" id="billingCity" name="billingCity">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="billingAddress">Adresă completă</label>
+                                <input type="text" id="billingAddress" name="billingAddress">
+                            </div>
+                            <div class="form-group">
+                                <label for="billingPostalCode">Cod poștal</label>
+                                <input type="text" id="billingPostalCode" name="billingPostalCode">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="billingContactName">Persoană de contact</label>
+                                    <input type="text" id="billingContactName" name="billingContactName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="billingContactEmail">E-mail contact facturare</label>
+                                    <input type="email" id="billingContactEmail" name="billingContactEmail">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>📝 Observații (opțional)</h3>
+                        <div class="form-group">
+                            <textarea id="notes" name="notes" placeholder="Detalii suplimentare pentru livrare, dacă este cazul"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>💳 Plata</h3>
+                        <p style="font-family:'Nunito',sans-serif; margin-bottom: 12px;">
+                            Singura metodă de plată disponibilă este plata online cu cardul, prin NETOPIA Payments.
+                        </p>
+                        <div class="netopia-slot">
+                            <img src="../netopia-logo.png" alt="NETOPIA Payments" id="netopiaLogoImg" style="display:none;">
+                            <span class="netopia-fallback-text" id="netopiaFallbackText">Plata online va fi procesată în siguranță prin NETOPIA Payments.</span>
+                        </div>
+                        <div id="netopiaDisabledNotice" class="form-error-summary" style="display:none; border-color: var(--nebi-orange);"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>✅ Confirmări obligatorii</h3>
+                        <div class="legal-checkbox-group">
+                            <input type="checkbox" id="confirmedConfig" required>
+                            <label for="confirmedConfig">Am verificat configurația comenzii afișată mai sus și este corectă.</label>
+                        </div>
+                        <div class="legal-checkbox-group">
+                            <input type="checkbox" id="acceptedTerms" required>
+                            <label for="acceptedTerms">
+                                Am citit și accept <a href="../termeni-si-conditii/" target="_blank" rel="noopener">Termenii și condițiile</a>.
+                            </label>
+                        </div>
+                        <div class="legal-checkbox-group">
+                            <input type="checkbox" id="acceptedRefundPolicy" required>
+                            <label for="acceptedRefundPolicy">
+                                Am citit și accept <a href="../anulare-retragere-rambursare/" target="_blank" rel="noopener">Politica de anulare, retragere și rambursare</a>.
+                            </label>
+                        </div>
+                        <p style="font-family:'Nunito',sans-serif; font-size: 13px; opacity: 0.75;">
+                            Prelucrarea datelor tale este descrisă în <a href="../politica-de-confidentialitate/">Politica de confidențialitate</a>.
+                        </p>
+                    </div>
+
+                    <div style="text-align:center; margin-top: 24px;">
+                        <button type="submit" class="pixel-btn" id="submitBtn" style="width:100%;">
+                            Comandă și plătește — <span id="submitTotal">…</span>
+                        </button>
+                        <p id="submitStatus" style="font-family:'VT323',monospace; font-size: 18px; margin-top: 10px; min-height: 24px;"></p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <div class="pixel-decorations" id="decorations" aria-hidden="true"></div>
+
+    <footer class="footer">
+        <div class="footer-brand">
+            <span class="footer-paw">🐾</span>
+            <span class="footer-text">NEBI — turnuri pentru pisici, cu suflet</span>
+            <span class="footer-paw">🐾</span>
+        </div>
+
+        <nav class="footer-links" aria-label="Linkuri legale">
+            <a href="/termeni-si-conditii/">Termeni și condiții</a>
+            <a href="/anulare-retragere-rambursare/">Anulare, retragere și rambursare</a>
+            <a href="/politica-de-confidentialitate/">Politica de confidențialitate</a>
+            <a href="/politica-cookies/">Politica de cookies</a>
+            <button type="button" data-cookie-settings>Setări cookies</button>
+            <a href="/utilizare-acceptabila/">Utilizare acceptabilă</a>
+            <a href="/proprietate-intelectuala/">Proprietate intelectuală</a>
+            <a href="/livrare-si-plata/">Livrare și plată</a>
+            <a href="/reclamatii/">Reclamații</a>
+            <a href="/contact/">Contact</a>
+        </nav>
+
+        <p class="footer-meta">NEBI este denumirea comercială sub care WORLDWIDE CONSULTING LINE SRL operează magazinul online nebi.ro · CUI 44398383 · Reg. Com. J29/1422/2021 · Str. Mircea cel Bătrân nr. 85, Ploiești, jud. Prahova, 100426, România</p>
+
+        <div class="footer-contact">
+            <a href="mailto:bforge478@gmail.com" data-nebi-contact-email>bforge478@gmail.com</a>
+            <a href="tel:+40722882473" data-nebi-contact-phone>0722 882 473</a>
+        </div>
+            <div class="footer-anpc-sal">
+            <a href="https://reclamatiisal.anpc.ro/" target="_blank" rel="noopener noreferrer">
+                <img src="../anpc-sal.png" alt="Soluționarea Alternativă a Litigiilor (SAL) — platforma ANPC" width="500" height="124" loading="lazy">
+            </a>
+        </div>
+    </footer>
+
+    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="false" aria-labelledby="cookieBannerTitle" aria-hidden="true">
+        <h2 id="cookieBannerTitle">🍪 Folosim cookie-uri</h2>
+        <p>
+            Folosim cookie-uri și tehnologii similare pentru funcționarea site-ului și, doar cu acordul tău, pentru
+            analiză și marketing. Detalii în <a href="/politica-cookies/">Politica de cookies</a>. Cookie-urile
+            strict necesare funcționează oricum, indiferent de alegerea ta.
+        </p>
+        <div class="cookie-actions">
+            <button type="button" class="pixel-btn" id="cookieAcceptAll">Accept toate</button>
+            <button type="button" class="pixel-btn outline" id="cookieRejectAll">Respinge opționale</button>
+            <button type="button" class="pixel-btn outline" id="cookieCustomize" aria-expanded="false" aria-controls="cookiePanel">Personalizează</button>
+        </div>
+        <div class="cookie-panel" id="cookiePanel" hidden>
+            <div class="cookie-category">
+                <div class="cookie-category-info">
+                    <strong>Strict necesare</strong>
+                    <span>Necesare pentru funcționarea de bază a site-ului. Nu pot fi dezactivate.</span>
+                </div>
+                <span class="cookie-toggle">
+                    <input type="checkbox" checked disabled aria-label="Cookie-uri strict necesare (mereu active)">
+                    <span class="cookie-toggle-track" aria-hidden="true"></span>
+                </span>
+            </div>
+            <div class="cookie-category">
+                <div class="cookie-category-info">
+                    <strong>Analiză</strong>
+                    <span>Ne-ar ajuta să înțelegem cum este folosit site-ul, dacă și când vor fi activate.</span>
+                </div>
+                <span class="cookie-toggle">
+                    <input type="checkbox" id="cookieToggleAnalytics" aria-label="Cookie-uri de analiză">
+                    <span class="cookie-toggle-track" aria-hidden="true"></span>
+                </span>
+            </div>
+            <div class="cookie-category">
+                <div class="cookie-category-info">
+                    <strong>Publicitate și remarketing</strong>
+                    <span>Ar fi folosite pentru reclame personalizate, dacă și când vor fi activate.</span>
+                </div>
+                <span class="cookie-toggle">
+                    <input type="checkbox" id="cookieToggleMarketing" aria-label="Cookie-uri de publicitate și remarketing">
+                    <span class="cookie-toggle-track" aria-hidden="true"></span>
+                </span>
+            </div>
+            <div class="cookie-actions" style="margin-top: 16px;">
+                <button type="button" class="pixel-btn" id="cookieSaveCustom">Salvează preferințele</button>
+                <button type="button" class="pixel-btn outline" id="cookieCloseSettings">Închide</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../site-config.js"></script>
+    <script src="../pricing-config.js"></script>
+    <script src="../contact-apply.js"></script>
+    <script src="../script.js"></script>
+    <script src="../cookie-consent.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

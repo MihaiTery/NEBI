@@ -1,0 +1,21 @@
+{
+  "name": "nebi-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NEBI backend: static frontend host, checkout/order API, NETOPIA integration, admin panel API.",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "migrate": "node src/db/migrate.js",
+    "seed:dev": "node src/db/seed-dev.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "zod": "^3.23.8"
+  }
+}

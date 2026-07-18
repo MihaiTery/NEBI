@@ -19,6 +19,9 @@
     --nebi-bg: #FFF5EB;
     --nebi-grid: #F0E0D0;
     --nebi-green: #6BBF59;
+    /* Scoped to operational surfaces only (admin panel, payment-status pages) — never used on the
+       marketing pages. A narrow, functional exception to the One Accent Rule for semantic status. */
+    --nebi-red: #C1443C;
     --nav-height: 70px;
 }
 
@@ -1970,4 +1973,280 @@ body {
     .legal-contact-box .contact-row strong {
         min-width: 0;
     }
+}
+
+/* ===== CUSTOMER TYPE TOGGLE (checkout) ===== */
+.type-toggle {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.type-toggle label {
+    flex: 1;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: var(--nebi-white);
+    border: 3px solid var(--nebi-orange);
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--nebi-dark);
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.type-toggle input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--nebi-orange-text);
+    cursor: pointer;
+}
+
+.type-toggle label:has(input:checked) {
+    background: rgba(var(--nebi-orange-rgb), 0.1);
+    border-color: var(--nebi-dark);
+}
+
+/* ===== FORM SECTIONS (checkout) ===== */
+.form-section {
+    margin-bottom: 28px;
+}
+
+.form-section h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: var(--nebi-orange-text);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 640px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-error-summary {
+    display: none;
+    background: var(--nebi-white);
+    border: 3px solid var(--nebi-red);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: var(--nebi-dark);
+}
+
+.form-error-summary.visible {
+    display: block;
+}
+
+.form-error-summary ul {
+    margin: 8px 0 0 20px;
+}
+
+/* ===== PIXEL BUTTON — disabled state ===== */
+.pixel-btn:disabled,
+.pixel-btn[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ===== STATUS PANEL (payment result pages) ===== */
+.status-panel {
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.status-panel .status-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.status-panel h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    color: var(--nebi-dark);
+}
+
+.status-panel.status-success h1 { color: var(--nebi-green); }
+.status-panel.status-error h1 { color: var(--nebi-red); }
+
+.status-panel p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--nebi-dark);
+    margin-bottom: 16px;
+}
+
+.status-order-number {
+    display: inline-block;
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    background: var(--nebi-white);
+    border: 3px solid var(--nebi-orange);
+    padding: 10px 20px;
+    margin: 12px 0 24px;
+}
+
+.status-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* ===== NETOPIA LOGO SLOT ===== */
+.netopia-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    margin: 16px 0;
+}
+
+.netopia-slot img {
+    max-height: 40px;
+    width: auto;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.netopia-slot .netopia-fallback-text {
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    opacity: 0.7;
+    text-align: center;
+}
+
+/* ===== ADMIN PANEL ===== */
+.admin-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.admin-login-form {
+    max-width: 380px;
+    margin: 60px auto;
+}
+
+.admin-toolbar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.admin-toolbar .form-group {
+    margin-bottom: 0;
+    min-width: 160px;
+}
+
+.admin-badge {
+    display: inline-block;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 7px;
+    letter-spacing: 0.5px;
+    padding: 5px 8px;
+    border: 2px solid currentColor;
+    text-transform: uppercase;
+}
+
+.admin-badge.status-pending,
+.admin-badge.status-processing,
+.admin-badge.status-new,
+.admin-badge.status-not_prepared,
+.admin-badge.status-ready { color: var(--nebi-orange-text); }
+
+.admin-badge.status-paid,
+.admin-badge.status-completed,
+.admin-badge.status-delivered,
+.admin-badge.status-confirmed,
+.admin-badge.status-shipped,
+.admin-badge.status-in_transit,
+.admin-badge.status-handed_to_gls { color: var(--nebi-green); }
+
+.admin-badge.status-failed,
+.admin-badge.status-cancelled,
+.admin-badge.status-expired,
+.admin-badge.status-returned,
+.admin-badge.status-delivery_exception { color: var(--nebi-red); }
+
+.admin-order-detail dl.checkout-info-style {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.admin-order-detail dt { opacity: 0.7; }
+.admin-order-detail dd { font-weight: 600; }
+
+.admin-order-detail h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    color: var(--nebi-orange-text);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.admin-order-detail h4 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: var(--nebi-dark);
+    margin: 24px 0 10px;
+    line-height: 1.6;
+}
+
+.admin-detail-summary {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    color: var(--nebi-orange-text);
+    cursor: pointer;
+}
+
+.admin-inline-status {
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    margin-left: 12px;
+}
+
+.admin-empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    opacity: 0.6;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* ===== FOOTER — ANPC/SAL BADGE ===== */
+.footer-anpc-sal {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.footer-anpc-sal img {
+    width: 160px;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
 }
