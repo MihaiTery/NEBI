@@ -3,23 +3,79 @@
 
   <url>
     <loc>https://www.nebi.ro/</loc>
-    <lastmod>2026-04-26</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://www.nebi.ro/magazin.html</loc>
-    <lastmod>2026-04-26</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://www.nebi.ro/colaborari.html</loc>
-    <lastmod>2026-04-26</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nebi.ro/contact/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nebi.ro/termeni-si-conditii/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nebi.ro/anulare-retragere-rambursare/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nebi.ro/politica-de-confidentialitate/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nebi.ro/politica-cookies/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nebi.ro/utilizare-acceptabila/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nebi.ro/proprietate-intelectuala/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nebi.ro/reclamatii/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>

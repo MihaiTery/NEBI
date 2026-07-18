@@ -98,7 +98,30 @@
 
     // --- Buy button ---
     function setupBuyButton() {
-        document.getElementById('buyBtn').addEventListener('click', () => {
+        const buyBtn = document.getElementById('buyBtn');
+        const termsCheckbox = document.getElementById('acceptTermsCheckbox');
+        const termsGroup = document.getElementById('termsCheckboxGroup');
+        const termsError = document.getElementById('termsCheckboxError');
+
+        if (termsCheckbox) {
+            termsCheckbox.addEventListener('change', () => {
+                if (termsCheckbox.checked) {
+                    termsError.classList.remove('visible');
+                    termsGroup.classList.remove('has-error');
+                }
+            });
+        }
+
+        buyBtn.addEventListener('click', () => {
+            // Comanda nu poate continua fără acceptarea explicită a Termenilor
+            // și a Politicii de anulare/retragere/rambursare — bifă nebifată implicit.
+            if (termsCheckbox && !termsCheckbox.checked) {
+                termsError.classList.add('visible');
+                termsGroup.classList.add('has-error');
+                termsCheckbox.focus();
+                return;
+            }
+
             alert('🐱 Multumim pentru interes!\n\nSistemul de plata va fi disponibil in curand.\nFiecare achizitie contribuie la salvarea animalelor fara adapost!');
         });
     }
@@ -130,6 +153,8 @@
         const baseImg = document.createElement('img');
         baseImg.src = IMG_BAZA;
         baseImg.alt = 'Baza turn NEBI';
+        baseImg.width = 367;
+        baseImg.height = 130;
         baseEl.appendChild(baseImg);
         towerPreview.appendChild(baseEl);
 
@@ -154,6 +179,8 @@
                 const img = document.createElement('img');
                 img.src = IMG_PAR;
                 img.alt = 'Nivel par';
+                img.width = 232;
+                img.height = 63;
                 levelEl.appendChild(img);
             } else {
                 // Impar level: two piece ends
@@ -161,6 +188,8 @@
                 const img = document.createElement('img');
                 img.src = IMG_IMPAR;
                 img.alt = 'Nivel impar';
+                img.width = 168;
+                img.height = 46;
                 levelEl.appendChild(img);
 
                 // Check specials for left and right piece
@@ -183,6 +212,8 @@
         const patImg = document.createElement('img');
         patImg.src = IMG_PAT;
         patImg.alt = 'Patuc pisica';
+        patImg.width = 232;
+        patImg.height = 49;
         patEl.appendChild(patImg);
         towerPreview.appendChild(patEl);
 

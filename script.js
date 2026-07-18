@@ -88,7 +88,15 @@
 
     // --- Initialize ---
     function init() {
-        if (!cat || !catImg) return; // safety check
+        // Funcționalități prezente pe toate paginile, inclusiv cele fără mascota
+        // pisicii (ex: paginile juridice) — nu depind de existența #cat.
+        setupNavToggle();
+        setupScrollAnimations();
+        setupCopyButton();
+        setupCollabForm();
+        setupContactForm();
+
+        if (!cat || !catImg) return; // pagină fără mascotă (ex: pagini juridice)
 
         setupMouseTracking();
         setupCatClick();
@@ -97,23 +105,11 @@
         startIdleState();
         preloadImages();
 
-        // Decorations (all pages)
+        // Decorations (doar pe paginile cu mascotă)
         if (decorations) {
             spawnFish();
         }
         spawnPawPrints();
-
-        // Navigation toggle (mobile)
-        setupNavToggle();
-
-        // Scroll animations
-        setupScrollAnimations();
-
-        // Copy button (colaborari page)
-        setupCopyButton();
-
-        // Form handler (colaborari page)
-        setupCollabForm();
     }
 
     function preloadImages() {
@@ -282,6 +278,16 @@
             showSpeechBubble();
         });
 
+        cat.addEventListener('keydown', (e) => {
+            if (e.code === 'Enter') {
+                e.preventDefault();
+                e.stopPropagation();
+                wakeUp();
+                enterState(STATE_JUMPING);
+                showSpeechBubble();
+            }
+        });
+
         cat.addEventListener('mouseenter', () => {
             if (currentState === STATE_IDLE) {
                 catImg.classList.remove('cat-jump');
@@ -390,7 +396,7 @@
 
         cat.classList.add('moveable');
         catX = 0;
-        cat.style.left = `calc(50% - 80px + ${catX}px)`;
+        cat.style.transform = `translateX(${catX}px)`;
 
         const hint = document.getElementById('keyboardHint');
         hint.classList.add('visible');
@@ -403,11 +409,11 @@
         if (code === 'ArrowLeft') {
             catX -= step;
             catImg.style.transform = 'scaleX(-1)';
-            cat.style.left = `calc(50% - 80px + ${catX}px)`;
+            cat.style.transform = `translateX(${catX}px)`;
         } else if (code === 'ArrowRight') {
             catX += step;
             catImg.style.transform = 'scaleX(1)';
-            cat.style.left = `calc(50% - 80px + ${catX}px)`;
+            cat.style.transform = `translateX(${catX}px)`;
         }
     }
 
@@ -459,8 +465,9 @@
         if (!toggle || !links) return;
 
         toggle.addEventListener('click', () => {
-            links.classList.toggle('open');
-            toggle.textContent = links.classList.contains('open') ? '✕' : '☰';
+            const isOpen = links.classList.toggle('open');
+            toggle.textContent = isOpen ? '✕' : '☰';
+            toggle.setAttribute('aria-expanded', String(isOpen));
         });
 
         // Close on link click
@@ -468,6 +475,7 @@
             link.addEventListener('click', () => {
                 links.classList.remove('open');
                 toggle.textContent = '☰';
+                toggle.setAttribute('aria-expanded', 'false');
             });
         });
     }
@@ -510,6 +518,18 @@
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             alert('🐱 Mulțumim pentru propunere!\n\nFormularul va fi conectat la un serviciu de email în curând.\nÎntre timp, ne poți contacta direct.');
+            form.reset();
+        });
+    }
+
+    // --- Contact form ---
+    function setupContactForm() {
+        const form = document.getElementById('contactForm');
+        if (!form) return;
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('🐱 Mulțumim pentru mesaj!\n\nFormularul va fi conectat la un serviciu de email în curând.\nÎntre timp, ne poți contacta direct la bforge478@gmail.com sau 0722 882 473.');
             form.reset();
         });
     }

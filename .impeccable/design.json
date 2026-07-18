@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-18T13:10:00Z",
+  "title": "Design System: NEBI",
+  "extensions": {
+    "colorMeta": {
+      "orange": { "role": "primary", "displayName": "NEBI Orange", "canonical": "oklch(70% 0.16 50)", "tonalRamp": ["oklch(20% 0.05 50)", "oklch(30% 0.08 50)", "oklch(40% 0.11 50)", "oklch(50% 0.14 50)", "oklch(60% 0.16 50)", "oklch(70% 0.16 50)", "oklch(82% 0.11 50)", "oklch(93% 0.05 50)"] },
+      "orange-text": { "role": "primary-text", "displayName": "Orange Text", "canonical": "oklch(38% 0.13 45)" },
+      "orange-text-hover": { "role": "primary-text-hover", "displayName": "Orange Text Hover", "canonical": "oklch(43% 0.15 47)" },
+      "ink": { "role": "neutral", "displayName": "Dark Brown / Ink", "canonical": "oklch(28% 0.05 45)" },
+      "surface": { "role": "neutral", "displayName": "White", "canonical": "oklch(100% 0 0)" },
+      "surface-cream": { "role": "neutral", "displayName": "Cream", "canonical": "oklch(97% 0.02 60)" },
+      "bg": { "role": "neutral", "displayName": "Background", "canonical": "oklch(96% 0.025 55)" },
+      "grid-line": { "role": "neutral", "displayName": "Grid Line", "canonical": "oklch(90% 0.03 55)" },
+      "success": { "role": "status", "displayName": "Success Green", "canonical": "oklch(72% 0.14 140)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero heading only, one per page." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles, always paired with a leading emoji." },
+      "title": { "displayName": "Title", "purpose": "Card and panel headings." },
+      "label": { "displayName": "Label", "purpose": "Nav links, buttons, table headers, form labels, badges." },
+      "body": { "displayName": "Body", "purpose": "All paragraph and reading content." },
+      "aside": { "displayName": "Aside", "purpose": "Quiet secondary lines: hero subtext, soft asides." }
+    },
+    "shadows": [
+      { "name": "button-press", "value": "0 4px 0 #3D2B1F", "purpose": "Hard step shadow under .pixel-btn on hover; removed on :active." },
+      { "name": "card-lift", "value": "0 6px 0 rgba(232, 134, 42, 0.15)", "purpose": "Hard step shadow under .pixel-card on hover." },
+      { "name": "focus-ring", "value": "0 0 0 2px rgba(232, 134, 42, 0.2)", "purpose": "Soft focus ring on form fields — the one allowed non-hard shadow." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "ease", "purpose": "Default transition easing across buttons, cards, and nav links (0.15–0.3s)." },
+      { "name": "logo-float", "value": "3s ease-in-out infinite", "purpose": "Hero logo gentle float animation." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "480px" },
+      { "name": "md", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call-to-action button, e.g. 'Configurează turnul tău'.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Configurează turnul tău →</a>",
+      "css": ".ds-btn-primary { font-family: 'Press Start 2P', cursive; font-size: 11px; color: #FFFFFF; background: #8F4509; border: 3px solid #3D2B1F; padding: 16px 24px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; text-align: center; transition: all 0.15s ease; } .ds-btn-primary:hover { background: #A8540F; transform: translateY(-2px); box-shadow: 0 4px 0 #3D2B1F; } .ds-btn-primary:active { transform: translateY(0); box-shadow: none; } .ds-btn-primary:focus-visible { outline: 2px solid #3D2B1F; outline-offset: 2px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary button variant — transparent fill, orange border.",
+      "html": "<button class=\"ds-btn-outline\">Vezi mai mult</button>",
+      "css": ".ds-btn-outline { font-family: 'Press Start 2P', cursive; font-size: 11px; color: #8F4509; background: transparent; border: 3px solid #8F4509; padding: 12px 24px; cursor: pointer; transition: all 0.15s ease; } .ds-btn-outline:hover { background: rgba(232, 134, 42, 0.1); } .ds-btn-outline:focus-visible { outline: 2px solid #8F4509; outline-offset: 2px; }"
+    },
+    {
+      "name": "Pixel Card",
+      "kind": "card",
+      "refersTo": "card-surface",
+      "description": "Standard content card with the signature echo-outline double border.",
+      "html": "<div class=\"ds-card\"><span class=\"ds-card-icon\">🪵</span><h3 class=\"ds-card-title\">Lemn natural de brad</h3><p class=\"ds-card-text\">Încurajează felinele să-și ascută ghearele în mod natural.</p></div>",
+      "css": ".ds-card { background: #FFFFFF; border: 3px solid #E8862A; padding: 24px; position: relative; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease; } .ds-card::after { content: ''; position: absolute; bottom: -4px; right: -4px; width: 100%; height: 100%; border: 2px solid rgba(232, 134, 42, 0.2); z-index: -1; } .ds-card:hover { transform: translateY(-2px); box-shadow: 0 6px 0 rgba(232, 134, 42, 0.15); } .ds-card-icon { font-size: 40px; margin-bottom: 16px; display: block; } .ds-card-title { font-family: 'Press Start 2P', cursive; font-size: 11px; color: #8F4509; margin-bottom: 12px; line-height: 1.6; } .ds-card-text { font-family: 'Nunito', sans-serif; font-size: 15px; color: #3D2B1F; opacity: 0.85; line-height: 1.4; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Form text field, e.g. the collaboration form.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Ex: Asociația Prietenii Felinelor\" />",
+      "css": ".ds-input { width: 100%; padding: 12px 16px; font-family: 'Nunito', sans-serif; font-size: 15px; color: #3D2B1F; background: #FFFFFF; border: 3px solid #E8862A; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; } .ds-input:focus { border-color: #3D2B1F; box-shadow: 0 0 0 2px rgba(232, 134, 42, 0.2); } .ds-input::placeholder { color: #3D2B1F; opacity: 0.55; }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Fixed top navigation with pixel-dashed bottom border.",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-logo\">NEBI</div><ul class=\"ds-nav-links\"><li><a href=\"#\" class=\"active\">Misiune</a></li><li><a href=\"#\">Magazin</a></li><li><a href=\"#\">Colaborari</a></li></ul></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; height: 70px; padding: 0 30px; background: #FFF8F0; border-bottom: 3px solid #E8862A; position: relative; } .ds-nav::after { content: ''; position: absolute; bottom: -7px; left: 0; right: 0; height: 4px; background: repeating-linear-gradient(90deg, #E8862A 0px, #E8862A 4px, transparent 4px, transparent 8px); } .ds-nav-logo { font-family: 'Press Start 2P', cursive; font-size: 16px; color: #8F4509; letter-spacing: 2px; } .ds-nav-links { display: flex; gap: 8px; list-style: none; } .ds-nav-links a { font-family: 'Press Start 2P', cursive; font-size: 9px; color: #3D2B1F; text-decoration: none; padding: 8px 14px; border: 2px solid transparent; transition: all 0.2s ease; } .ds-nav-links a:hover, .ds-nav-links a.active { color: #8F4509; border-color: #E8862A; background: rgba(232, 134, 42, 0.1); }"
+    },
+    {
+      "name": "Tower Level (signature)",
+      "kind": "custom",
+      "refersTo": "tower-level",
+      "description": "One stacked level of the configurator's pixel-art tower preview, with a special-piece glow variant.",
+      "html": "<div class=\"ds-tower-level ds-tower-level--sisal\"><div class=\"ds-tower-level-block\"></div></div>",
+      "css": ".ds-tower-level { display: flex; justify-content: center; position: relative; margin-bottom: -4px; } .ds-tower-level-block { width: 120px; height: 40px; background: #C8A96E; image-rendering: pixelated; } .ds-tower-level--sisal .ds-tower-level-block { filter: drop-shadow(0 0 6px rgba(200, 169, 110, 0.8)) brightness(1.1); } .ds-tower-level--rope .ds-tower-level-block { filter: drop-shadow(0 0 6px rgba(160, 120, 90, 0.8)) brightness(0.95) saturate(0.8); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The 8-Bit Workshop",
+    "overview": "NEBI reads like a hand-built game cartridge for a hand-built product: a warm-wood, pixel-drawn cat tower rendered with the same care as its physical joinery. The system pairs a chunky, all-caps pixel typeface for structure and voice with a soft, rounded body font for reading — the same split a good indie game uses between its HUD and its dialogue box. Every surface is flat and sharp-cornered (no radius except the one deliberate exception, the speech bubble); depth comes from hard-edged, zero-blur \"step\" shadows and a doubled echo-outline, never from blur or glass. This is a maker's aesthetic, not a startup's: warm, friendly, playful, with real empathy for animals — stated as NEBI's own brand guidelines — but never cute-cartoon and never boutique-sterile. It explicitly rejects sterile corporate e-commerce (cold, catalog-like, big-box-furniture-retailer polish) and the two traps adjacent to it: generic pastel pet-startup sameness (soft gradients, blob illustrations) and childish cartoon-mascot pet branding.",
+    "keyCharacteristics": [
+      "Two-voice typography: pixel display type for structure, Nunito for reading, VT323 for a quieter aside voice.",
+      "Flat, sharp-cornered surfaces; depth via hard offset shadows, not blur.",
+      "One saturated accent (NEBI Orange) carrying nav, headings, buttons, and borders — a Committed color strategy, not a full palette.",
+      "Genuine pixel-art texture (grid background, pixelated image-rendering, retro cat sprite animation) rather than decorative flourish."
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "NEBI Orange is the only saturated color in the system. Green appears exactly once, as an adoption-status signal, never as decoration. There is no secondary or tertiary brand color — resist adding one.", "section": "colors" },
+      { "name": "The Text-Safe Orange Rule", "body": "Bright NEBI Orange (#E8862A) is decorative only — borders, dividers, glows. Anything rendering as text, or filling a shape that light text sits on, uses Orange Text (#8F4509) or Orange Text Hover (#A8540F) instead. Never let the bright brand orange carry text again; it reads as brand personality but fails contrast at ~2.5:1.", "section": "colors" },
+      { "name": "The Density Ceiling Rule", "body": "Press Start 2P is never set smaller than 7px or used for more than one short phrase at a time — it's a structural/label face, not a reading face. If a sentence needs the pixel font, it's too long; move it to Nunito or VT323.", "section": "typography" },
+      { "name": "The Hard Shadow Rule", "body": "Every shadow in the system is a flat, zero-blur offset (0 Npx 0 color), never 0 Npx Mpx blur color. Blur reads as glass or as a generic SaaS card; NEBI's depth is print-registration depth, not glow depth.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep every surface sharp-cornered (0 radius); the one approved exception is the 4px-radius speech bubble.",
+      "Do use zero-blur, solid-offset shadows only (0 Npx 0 color) — the Hard Shadow Rule.",
+      "Do lead sections with an emoji + .section-title, never an uppercase tracked eyebrow line.",
+      "Do keep Press Start 2P to short phrases (labels, titles, headings) and route anything paragraph-length to Nunito.",
+      "Do let NEBI Orange stay the only saturated color; Success Green is reserved for adoption-status text only.",
+      "Do communicate special/premium pieces (sisal, rope) through colored glow/filter, matching the Tower Preview pattern, not through badges or stripes."
+    ],
+    "donts": [
+      "Don't make the site feel like sterile corporate e-commerce — no cold catalog grids, no big-box-furniture-retailer polish. This is PRODUCT.md's primary anti-reference.",
+      "Don't drift toward generic pastel pet-startup sameness — no soft gradients, no blob illustrations, no Instagram-startup rounded-everything look.",
+      "Don't tip into cutesy cartoon-mascot pet branding — NEBI's playfulness is pixel-art-deliberate, not childish; keep the sprite cat expressive but not saccharine.",
+      "Don't use blurred/glow box-shadows or glassmorphism anywhere — depth is hard-edged only.",
+      "Don't use gradient text or background-clip: text treatments — emphasis comes from the pixel face and color, not gradients.",
+      "Don't simulate proof that doesn't exist yet (stock photography standing in for the real prototype, invented testimonials) — the product photo placeholders explicitly say 'in curand' rather than fake it, and that honesty should hold everywhere else too.",
+      "Don't add a second or third saturated accent color 'for variety' — the One Accent Rule holds even under pressure to add visual interest."
+    ]
+  }
+}

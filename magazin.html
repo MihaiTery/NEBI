@@ -19,6 +19,8 @@
     <meta name="twitter:description" content="Configureaza turnul perfect pentru pisica ta. Lemn masiv de brad, fara chimicale.">
     <meta name="twitter:image" content="NEBI-LOGO.png">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -28,10 +30,10 @@
     <!-- Navigation -->
     <nav class="nav">
         <a href="index.html" class="nav-logo">
-            <img src="NEBI-LOGO.png" alt="NEBI">
+            <img src="NEBI-LOGO.png" alt="NEBI" width="240" height="240">
             <span>NEBI</span>
         </a>
-        <button class="nav-toggle" id="navToggle">☰</button>
+        <button class="nav-toggle" id="navToggle" aria-label="Meniu" aria-expanded="false" aria-controls="navLinks">☰</button>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Misiune</a></li>
             <li><a href="magazin.html" class="active">Magazin</a></li>
@@ -52,7 +54,7 @@
                     <span style="font-size: 8px;">(în curând)</span>
                 </div>
                 <div class="product-info">
-                    <h2>Turnul modular<br>din lemn de brad</h2>
+                    <h3>Turnul modular<br>din lemn de brad</h3>
                     <div class="price">2490 RON <small>/ configurația de bază</small></div>
                     <ul class="advantages-list">
                         <li>Lemn masiv de brad 100% natural</li>
@@ -105,9 +107,9 @@
                         <div class="config-option">
                             <span>Număr nivele</span>
                             <div class="config-stepper">
-                                <button id="levelMinus">-</button>
+                                <button id="levelMinus" aria-label="Scade numărul de nivele">-</button>
                                 <span class="stepper-value" id="levelCount">12</span>
-                                <button id="levelPlus">+</button>
+                                <button id="levelPlus" aria-label="Crește numărul de nivele">+</button>
                             </div>
                         </div>
                         <p style="font-size: 13px; opacity: 0.6; margin-top: 8px;">
@@ -120,17 +122,17 @@
                         <div class="config-option">
                             <span>🧶 Cu sisal (ascuțit gheare)</span>
                             <div class="config-stepper">
-                                <button id="sisalMinus">-</button>
+                                <button id="sisalMinus" aria-label="Scade piesele cu sisal">-</button>
                                 <span class="stepper-value" id="sisalCount">0</span>
-                                <button id="sisalPlus">+</button>
+                                <button id="sisalPlus" aria-label="Crește piesele cu sisal">+</button>
                             </div>
                         </div>
                         <div class="config-option">
                             <span>🪢 Cu sfoară (joacă)</span>
                             <div class="config-stepper">
-                                <button id="ropeMinus">-</button>
+                                <button id="ropeMinus" aria-label="Scade piesele cu sfoară">-</button>
                                 <span class="stepper-value" id="ropeCount">0</span>
-                                <button id="ropePlus">+</button>
+                                <button id="ropePlus" aria-label="Crește piesele cu sfoară">+</button>
                             </div>
                         </div>
                         <p style="font-size: 13px; opacity: 0.6; margin-top: 8px;">
@@ -161,12 +163,49 @@
                             <span id="summaryHeight">1.2m</span>
                         </div>
                         <div class="summary-total">
-                            <span>TOTAL:</span>
+                            <span>TOTAL (TVA inclus):</span>
                             <span id="summaryTotal">249 RON</span>
                         </div>
+
+                        <div class="checkout-info" style="margin-top: 20px;">
+                            <h4>ℹ️ Înainte să comanzi</h4>
+                            <dl>
+                                <dt>Produs</dt>
+                                <dd>Turn modular NEBI din lemn masiv de brad — 1 buc, configurația de mai sus</dd>
+                                <dt>Caracter produs</dt>
+                                <dd>Produs fizic, livrat prin curier (nu conținut digital)</dd>
+                                <dt>Preț fără TVA</dt>
+                                <dd id="summarySubtotal">[se afișează la activarea plății]</dd>
+                                <dt>TVA</dt>
+                                <dd>Inclus în prețul total afișat</dd>
+                                <dt>Monedă</dt>
+                                <dd>RON</dd>
+                                <dt>Taxe suplimentare</dt>
+                                <dd>Eventuale costuri de livrare — afișate separat, dacă sunt aplicabile</dd>
+                                <dt>Metodă de plată</dt>
+                                <dd>Sistemul de plată online nu este încă activ</dd>
+                                <dt>Termen estimat livrare</dt>
+                                <dd>Comunicat individual la confirmarea comenzii</dd>
+                                <dt>Comerciant</dt>
+                                <dd>NEBO SAFETY SRL (brand NEBI), CUI RO 42021319</dd>
+                            </dl>
+                            <p class="checkout-links">
+                                <a href="../anulare-retragere-rambursare/">Politica de anulare, retragere și rambursare</a>
+                            </p>
+                        </div>
+
+                        <div class="legal-checkbox-group" id="termsCheckboxGroup" style="margin-top: 20px;">
+                            <input type="checkbox" id="acceptTermsCheckbox">
+                            <label for="acceptTermsCheckbox">
+                                Am citit și accept <a href="../termeni-si-conditii/" target="_blank" rel="noopener">Termenii și condițiile</a>
+                                și <a href="../anulare-retragere-rambursare/" target="_blank" rel="noopener">Politica de anulare, retragere și rambursare</a>.
+                            </label>
+                        </div>
+                        <p class="legal-checkbox-error" id="termsCheckboxError">⚠ Trebuie să accepți Termenii și Politica de anulare/rambursare înainte de a continua.</p>
+
                         <div style="margin-top: 16px; text-align: center;">
                             <button class="pixel-btn" id="buyBtn" style="width: 100%;">
-                                🛒 Comandă acum
+                                Comandă și plătește
                             </button>
                         </div>
                         <p style="font-family: 'VT323', monospace; font-size: 16px; opacity: 0.5; margin-top: 8px; text-align: center;">
@@ -179,25 +218,103 @@
 
         <!-- Cat area -->
         <div class="cat-area">
-            <div class="cat-container" id="cat">
+            <div class="cat-container" id="cat" role="button" tabindex="0" aria-label="Trezește pisica NEBI">
                 <div class="speech-bubble" id="speechBubble">
                     <span id="speechText"></span>
                 </div>
-                <img src="PHASE 1.png" alt="NEBI Cat" class="cat-img" id="catImg">
+                <img src="PHASE 1.png" alt="NEBI Cat" class="cat-img" id="catImg" width="210" height="219">
             </div>
         </div>
 
     </div>
 
-    <div class="pixel-decorations" id="decorations"></div>
+    <div class="pixel-decorations" id="decorations" aria-hidden="true"></div>
 
     <footer class="footer">
-        <span class="footer-paw">🐾</span>
-        <span class="footer-text">NEBI — turnuri pentru pisici, cu suflet</span>
-        <span class="footer-paw">🐾</span>
+        <div class="footer-brand">
+            <span class="footer-paw">🐾</span>
+            <span class="footer-text">NEBI — turnuri pentru pisici, cu suflet</span>
+            <span class="footer-paw">🐾</span>
+        </div>
+
+        <nav class="footer-links" aria-label="Linkuri legale">
+            <a href="/termeni-si-conditii/">Termeni și condiții</a>
+            <a href="/anulare-retragere-rambursare/">Anulare, retragere și rambursare</a>
+            <a href="/politica-de-confidentialitate/">Politica de confidențialitate</a>
+            <a href="/politica-cookies/">Politica de cookies</a>
+            <button type="button" data-cookie-settings>Setări cookies</button>
+            <a href="/utilizare-acceptabila/">Utilizare acceptabilă</a>
+            <a href="/proprietate-intelectuala/">Proprietate intelectuală</a>
+            <a href="/reclamatii/">Reclamații</a>
+            <a href="/contact/">Contact</a>
+        </nav>
+
+        <p class="footer-meta">NEBI este operat de NEBO SAFETY SRL · CUI RO 42021319 · J40/17136/2019 · București, Sector 1 · Societate plătitoare de TVA</p>
+
+        <div class="footer-contact">
+            <a href="mailto:bforge478@gmail.com">bforge478@gmail.com</a>
+            <a href="tel:+40722882473">0722 882 473</a>
+        </div>
     </footer>
+
+    <!-- Banner de consimțământ cookie-uri -->
+    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="false" aria-labelledby="cookieBannerTitle" aria-hidden="true">
+        <h2 id="cookieBannerTitle">🍪 Folosim cookie-uri</h2>
+        <p>
+            Folosim cookie-uri și tehnologii similare pentru funcționarea site-ului și, doar cu acordul tău, pentru
+            analiză și marketing. Detalii în <a href="/politica-cookies/">Politica de cookies</a>. Cookie-urile
+            strict necesare funcționează oricum, indiferent de alegerea ta.
+        </p>
+
+        <div class="cookie-actions">
+            <button type="button" class="pixel-btn" id="cookieAcceptAll">Accept toate</button>
+            <button type="button" class="pixel-btn outline" id="cookieRejectAll">Respinge opționale</button>
+            <button type="button" class="pixel-btn outline" id="cookieCustomize" aria-expanded="false" aria-controls="cookiePanel">Personalizează</button>
+        </div>
+
+        <div class="cookie-panel" id="cookiePanel" hidden>
+            <div class="cookie-category">
+                <div class="cookie-category-info">
+                    <strong>Strict necesare</strong>
+                    <span>Necesare pentru funcționarea de bază a site-ului (ex: reținerea alegerii tale privind cookie-urile). Nu pot fi dezactivate.</span>
+                </div>
+                <span class="cookie-toggle">
+                    <input type="checkbox" checked disabled aria-label="Cookie-uri strict necesare (mereu active)">
+                    <span class="cookie-toggle-track" aria-hidden="true"></span>
+                </span>
+            </div>
+
+            <div class="cookie-category">
+                <div class="cookie-category-info">
+                    <strong>Analiză</strong>
+                    <span>Ne-ar ajuta să înțelegem cum este folosit site-ul (ex: Google Analytics), dacă și când vor fi activate.</span>
+                </div>
+                <span class="cookie-toggle">
+                    <input type="checkbox" id="cookieToggleAnalytics" aria-label="Cookie-uri de analiză">
+                    <span class="cookie-toggle-track" aria-hidden="true"></span>
+                </span>
+            </div>
+
+            <div class="cookie-category">
+                <div class="cookie-category-info">
+                    <strong>Publicitate și remarketing</strong>
+                    <span>Ar fi folosite pentru reclame personalizate (ex: Meta, TikTok), dacă și când vor fi activate.</span>
+                </div>
+                <span class="cookie-toggle">
+                    <input type="checkbox" id="cookieToggleMarketing" aria-label="Cookie-uri de publicitate și remarketing">
+                    <span class="cookie-toggle-track" aria-hidden="true"></span>
+                </span>
+            </div>
+
+            <div class="cookie-actions" style="margin-top: 16px;">
+                <button type="button" class="pixel-btn" id="cookieSaveCustom">Salvează preferințele</button>
+                <button type="button" class="pixel-btn outline" id="cookieCloseSettings">Închide</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script src="configurator.js"></script>
+    <script src="cookie-consent.js"></script>
 </body>
 </html>

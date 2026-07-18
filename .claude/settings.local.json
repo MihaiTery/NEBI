@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls -lh *.png)"
+      "Bash(ls -lh *.png)",
+      "WebFetch(domain:consumer-redress.ec.europa.eu)"
     ]
   }
 }

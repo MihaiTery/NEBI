@@ -22,6 +22,8 @@
     <meta name="twitter:description" content="Turnuri modulare din lemn de brad, create cu dragoste pentru pisici. 30% din profit merge la adaposturi.">
     <meta name="twitter:image" content="NEBI-LOGO.png">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -31,10 +33,10 @@
     <!-- Navigation -->
     <nav class="nav">
         <a href="index.html" class="nav-logo">
-            <img src="NEBI-LOGO.png" alt="NEBI">
+            <img src="NEBI-LOGO.png" alt="NEBI" width="240" height="240">
             <span>NEBI</span>
         </a>
-        <button class="nav-toggle" id="navToggle">☰</button>
+        <button class="nav-toggle" id="navToggle" aria-label="Meniu" aria-expanded="false" aria-controls="navLinks">☰</button>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html" class="active">Misiune</a></li>
             <li><a href="magazin.html">Magazin</a></li>
@@ -48,17 +50,17 @@
         <!-- Hero -->
         <section class="hero">
             <div class="logo-container">
-                <img src="NEBI-LOGO.png" alt="NEBI Logo" class="logo">
+                <img src="NEBI-LOGO.png" alt="NEBI Logo" class="logo" width="240" height="240">
             </div>
             <h1 class="heading">Un turn pentru pisici.<br>O misiune pentru suflet.</h1>
             <p class="subtext">NEBI construiește turnuri modulare din lemn masiv pentru pisicile tale — și ajută pisicile fără stăpân să își găsească o familie.</p>
 
             <div class="cat-area">
-                <div class="cat-container" id="cat">
+                <div class="cat-container" id="cat" role="button" tabindex="0" aria-label="Trezește pisica NEBI">
                     <div class="speech-bubble" id="speechBubble">
                         <span id="speechText"></span>
                     </div>
-                    <img src="PHASE 1.png" alt="NEBI Cat" class="cat-img" id="catImg">
+                    <img src="PHASE 1.png" alt="NEBI Cat" class="cat-img" id="catImg" width="210" height="219">
                 </div>
             </div>
         </section>
@@ -250,14 +252,92 @@
 
     </div>
 
-    <div class="pixel-decorations" id="decorations"></div>
+    <div class="pixel-decorations" id="decorations" aria-hidden="true"></div>
 
     <footer class="footer">
-        <span class="footer-paw">🐾</span>
-        <span class="footer-text">NEBI — turnuri pentru pisici, cu suflet</span>
-        <span class="footer-paw">🐾</span>
+        <div class="footer-brand">
+            <span class="footer-paw">🐾</span>
+            <span class="footer-text">NEBI — turnuri pentru pisici, cu suflet</span>
+            <span class="footer-paw">🐾</span>
+        </div>
+
+        <nav class="footer-links" aria-label="Linkuri legale">
+            <a href="/termeni-si-conditii/">Termeni și condiții</a>
+            <a href="/anulare-retragere-rambursare/">Anulare, retragere și rambursare</a>
+            <a href="/politica-de-confidentialitate/">Politica de confidențialitate</a>
+            <a href="/politica-cookies/">Politica de cookies</a>
+            <button type="button" data-cookie-settings>Setări cookies</button>
+            <a href="/utilizare-acceptabila/">Utilizare acceptabilă</a>
+            <a href="/proprietate-intelectuala/">Proprietate intelectuală</a>
+            <a href="/reclamatii/">Reclamații</a>
+            <a href="/contact/">Contact</a>
+        </nav>
+
+        <p class="footer-meta">NEBI este operat de NEBO SAFETY SRL · CUI RO 42021319 · J40/17136/2019 · București, Sector 1 · Societate plătitoare de TVA</p>
+
+        <div class="footer-contact">
+            <a href="mailto:bforge478@gmail.com">bforge478@gmail.com</a>
+            <a href="tel:+40722882473">0722 882 473</a>
+        </div>
     </footer>
 
+    <!-- Banner de consimțământ cookie-uri -->
+    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="false" aria-labelledby="cookieBannerTitle" aria-hidden="true">
+        <h2 id="cookieBannerTitle">🍪 Folosim cookie-uri</h2>
+        <p>
+            Folosim cookie-uri și tehnologii similare pentru funcționarea site-ului și, doar cu acordul tău, pentru
+            analiză și marketing. Detalii în <a href="/politica-cookies/">Politica de cookies</a>. Cookie-urile
+            strict necesare funcționează oricum, indiferent de alegerea ta.
+        </p>
+
+        <div class="cookie-actions">
+            <button type="button" class="pixel-btn" id="cookieAcceptAll">Accept toate</button>
+            <button type="button" class="pixel-btn outline" id="cookieRejectAll">Respinge opționale</button>
+            <button type="button" class="pixel-btn outline" id="cookieCustomize" aria-expanded="false" aria-controls="cookiePanel">Personalizează</button>
+        </div>
+
+        <div class="cookie-panel" id="cookiePanel" hidden>
+            <div class="cookie-category">
+                <div class="cookie-category-info">
+                    <strong>Strict necesare</strong>
+                    <span>Necesare pentru funcționarea de bază a site-ului (ex: reținerea alegerii tale privind cookie-urile). Nu pot fi dezactivate.</span>
+                </div>
+                <span class="cookie-toggle">
+                    <input type="checkbox" checked disabled aria-label="Cookie-uri strict necesare (mereu active)">
+                    <span class="cookie-toggle-track" aria-hidden="true"></span>
+                </span>
+            </div>
+
+            <div class="cookie-category">
+                <div class="cookie-category-info">
+                    <strong>Analiză</strong>
+                    <span>Ne-ar ajuta să înțelegem cum este folosit site-ul (ex: Google Analytics), dacă și când vor fi activate.</span>
+                </div>
+                <span class="cookie-toggle">
+                    <input type="checkbox" id="cookieToggleAnalytics" aria-label="Cookie-uri de analiză">
+                    <span class="cookie-toggle-track" aria-hidden="true"></span>
+                </span>
+            </div>
+
+            <div class="cookie-category">
+                <div class="cookie-category-info">
+                    <strong>Publicitate și remarketing</strong>
+                    <span>Ar fi folosite pentru reclame personalizate (ex: Meta, TikTok), dacă și când vor fi activate.</span>
+                </div>
+                <span class="cookie-toggle">
+                    <input type="checkbox" id="cookieToggleMarketing" aria-label="Cookie-uri de publicitate și remarketing">
+                    <span class="cookie-toggle-track" aria-hidden="true"></span>
+                </span>
+            </div>
+
+            <div class="cookie-actions" style="margin-top: 16px;">
+                <button type="button" class="pixel-btn" id="cookieSaveCustom">Salvează preferințele</button>
+                <button type="button" class="pixel-btn outline" id="cookieCloseSettings">Închide</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="cookie-consent.js"></script>
 </body>
 </html>
