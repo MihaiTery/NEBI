@@ -422,6 +422,7 @@
         const fishEmojis = ['🐟', '🐠', '🐡'];
 
         function createFish() {
+            if (document.hidden) return;
             const fish = document.createElement('div');
             fish.className = 'pixel-fish' + (Math.random() > 0.5 ? ' reverse' : '');
             fish.textContent = fishEmojis[Math.floor(Math.random() * fishEmojis.length)];
@@ -444,6 +445,7 @@
     // --- Paw Prints ---
     function spawnPawPrints() {
         function createPaw() {
+            if (document.hidden) return;
             const paw = document.createElement('div');
             paw.className = 'paw-print';
             paw.textContent = '🐾';

@@ -112,8 +112,8 @@ body {
 }
 
 .nav-logo span {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 16px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 43px;
     color: var(--nebi-orange-text);
     letter-spacing: 2px;
 }
@@ -125,8 +125,9 @@ body {
 }
 
 .nav-links a {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 9px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 24px;
+    letter-spacing: 0.5px;
     color: var(--nebi-dark);
     text-decoration: none;
     padding: 8px 14px;
@@ -135,10 +136,16 @@ body {
     position: relative;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a:focus-visible {
     color: var(--nebi-orange-text);
     border-color: var(--nebi-orange);
     background: rgba(var(--nebi-orange-rgb), 0.08);
+}
+
+.nav-links a:focus-visible {
+    outline: 2px solid var(--nebi-dark);
+    outline-offset: 2px;
 }
 
 .nav-links a.active {
@@ -155,8 +162,8 @@ body {
     padding: 10px 14px;
     min-width: 44px;
     min-height: 44px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 12px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 32px;
     color: var(--nebi-orange-text);
     cursor: pointer;
 }
@@ -179,8 +186,8 @@ body {
 }
 
 .section-title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 18px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 50px;
     color: var(--nebi-orange-text);
     text-align: center;
     margin-bottom: 30px;
@@ -189,8 +196,8 @@ body {
 }
 
 .section-subtitle {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 12px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 32px;
     color: var(--nebi-dark);
     text-align: center;
     margin-bottom: 20px;
@@ -242,8 +249,8 @@ body {
 }
 
 .hero .heading {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 20px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 56px;
     color: var(--nebi-orange-text);
     line-height: 1.6;
     text-shadow: 2px 2px 0 rgba(var(--nebi-orange-rgb), 0.15);
@@ -322,8 +329,8 @@ body {
     border: 3px solid var(--nebi-orange);
     border-radius: 4px;
     padding: 8px 14px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 9px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 24px;
     color: var(--nebi-dark);
     white-space: nowrap;
     opacity: 0;
@@ -456,8 +463,8 @@ body {
     position: absolute;
     top: -30px;
     right: -10px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 12px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 32px;
     color: var(--nebi-orange-text);
     opacity: 0;
     pointer-events: none;
@@ -493,8 +500,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 27px;
+    letter-spacing: 0.5px;
     color: var(--nebi-orange-text);
 }
 
@@ -569,8 +577,8 @@ body {
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
-    font-family: 'Press Start 2P', cursive;
-    font-size: 8px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 22px;
     color: var(--nebi-orange-text);
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -610,8 +618,9 @@ body {
 
 /* ===== PIXEL BUTTON ===== */
 .pixel-btn {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 11px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 30px;
+    letter-spacing: 0.5px;
     color: var(--nebi-white);
     background: var(--nebi-orange-text);
     border: 3px solid var(--nebi-dark);
@@ -628,10 +637,16 @@ body {
     image-rendering: pixelated;
 }
 
-.pixel-btn:hover {
+.pixel-btn:hover,
+.pixel-btn:focus-visible {
     background: var(--nebi-orange-text-hover);
     transform: translateY(-2px);
     box-shadow: 0 4px 0 var(--nebi-dark);
+}
+
+.pixel-btn:focus-visible {
+    outline: 2px solid var(--nebi-dark);
+    outline-offset: 3px;
 }
 
 .pixel-btn:active {
@@ -665,8 +680,8 @@ body {
 }
 
 .pixel-table th {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 9px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 25px;
     background: var(--nebi-orange-text);
     color: var(--nebi-white);
     padding: 12px 16px;
@@ -688,14 +703,14 @@ body {
 
 .pixel-table .status-adopted {
     color: var(--nebi-green);
-    font-family: 'Press Start 2P', cursive;
-    font-size: 8px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 22px;
 }
 
 .pixel-table .status-waiting {
     color: var(--nebi-orange-text);
-    font-family: 'Press Start 2P', cursive;
-    font-size: 8px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 22px;
 }
 
 /* ===== MISSION PAGE SPECIFICS ===== */
@@ -719,8 +734,8 @@ body {
 }
 
 .mission-card .card-title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 11px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 31px;
     color: var(--nebi-orange-text);
     margin-bottom: 12px;
     line-height: 1.6;
@@ -748,16 +763,16 @@ body {
 }
 
 .counter-number {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 28px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 76px;
     color: var(--nebi-orange-text);
     display: block;
     margin-bottom: 8px;
 }
 
 .counter-label {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 8px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 22px;
     color: var(--nebi-dark);
     opacity: 0.7;
 }
@@ -778,8 +793,8 @@ body {
 }
 
 .campaign-title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 11px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 31px;
     color: var(--nebi-orange-text);
     line-height: 1.6;
 }
@@ -839,8 +854,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 27px;
     color: var(--nebi-orange-text);
     opacity: 0.85;
     gap: 12px;
@@ -852,22 +867,22 @@ body {
 }
 
 .product-info h3 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 16px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 45px;
     color: var(--nebi-orange-text);
     margin-bottom: 16px;
     line-height: 1.8;
 }
 
 .product-info .price {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 24px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 65px;
     color: var(--nebi-dark);
     margin-bottom: 20px;
 }
 
 .product-info .price small {
-    font-size: 12px;
+    font-size: 32px;
     opacity: 0.6;
 }
 
@@ -988,8 +1003,8 @@ body {
 
 /* Tower height indicator */
 .tower-height-label {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 8px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 22px;
     color: var(--nebi-orange-text);
     margin-top: 12px;
     text-align: center;
@@ -1007,8 +1022,8 @@ body {
 }
 
 .config-panel h3 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 28px;
     color: var(--nebi-orange-text);
     margin-bottom: 16px;
     line-height: 1.6;
@@ -1035,8 +1050,8 @@ body {
 }
 
 .config-stepper button {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 12px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 32px;
     width: 44px;
     height: 44px;
     border: 2px solid var(--nebi-orange);
@@ -1055,8 +1070,8 @@ body {
 }
 
 .config-stepper .stepper-value {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 14px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 38px;
     min-width: 30px;
     text-align: center;
     color: var(--nebi-dark);
@@ -1080,8 +1095,8 @@ body {
 }
 
 .config-summary .summary-total {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 14px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 38px;
     color: var(--nebi-orange-text);
     padding-top: 12px;
     display: flex;
@@ -1115,8 +1130,8 @@ body {
 }
 
 .collab-type-card .card-title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 28px;
     color: var(--nebi-orange-text);
     margin-bottom: 10px;
     line-height: 1.6;
@@ -1154,8 +1169,8 @@ body {
 }
 
 .color-swatch .swatch-label {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 7px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 19px;
     color: var(--nebi-dark);
     opacity: 0.8;
 }
@@ -1179,8 +1194,8 @@ body {
 }
 
 .font-sample .sample-text.pixel-font {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 16px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 43px;
 }
 
 .font-sample .sample-text.mono-font {
@@ -1189,8 +1204,8 @@ body {
 }
 
 .font-sample .font-name {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 8px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 22px;
     color: var(--nebi-orange-text);
 }
 
@@ -1221,8 +1236,8 @@ body {
 }
 
 .logo-variant .variant-label {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 7px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 19px;
     color: var(--nebi-dark);
     opacity: 0.7;
 }
@@ -1242,8 +1257,9 @@ body {
 }
 
 .form-group label {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 9px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 24px;
+    letter-spacing: 0.5px;
     color: var(--nebi-dark);
     display: block;
     margin-bottom: 8px;
@@ -1304,8 +1320,8 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 7px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 19px;
     padding: 10px 14px;
     min-width: 44px;
     min-height: 44px;
@@ -1343,17 +1359,17 @@ body {
 }
 
 .legal-header .legal-eyebrow {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 9px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 24px;
     color: var(--nebi-orange-text);
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     display: block;
     margin-bottom: 14px;
 }
 
 .legal-header h1 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 18px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 50px;
     color: var(--nebi-orange-text);
     line-height: 1.7;
     text-wrap: balance;
@@ -1393,8 +1409,8 @@ body {
 }
 
 .legal-toc h2 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 11px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 31px;
     color: var(--nebi-orange-text);
     margin-bottom: 14px;
 }
@@ -1430,8 +1446,8 @@ body {
 }
 
 .legal-article h2 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 13px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 36px;
     color: var(--nebi-orange-text);
     line-height: 1.8;
     margin: 44px 0 16px;
@@ -1502,8 +1518,8 @@ body {
 }
 
 .legal-table th {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 8px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 22px;
     background: var(--nebi-orange-text);
     color: var(--nebi-white);
     padding: 10px 12px;
@@ -1570,8 +1586,8 @@ body {
 }
 
 .cookie-banner h2 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 11px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 31px;
     color: var(--nebi-orange-text);
     margin-bottom: 12px;
     line-height: 1.6;
@@ -1597,7 +1613,6 @@ body {
 
 .cookie-actions .pixel-btn {
     flex: 1 1 auto;
-    font-size: 10px;
     padding: 12px 14px;
 }
 
@@ -1768,8 +1783,8 @@ body {
 }
 
 .checkout-info h4 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 9px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 25px;
     color: var(--nebi-orange-text);
     margin-bottom: 12px;
     line-height: 1.6;
@@ -1845,11 +1860,11 @@ body {
     }
 
     .section-title {
-        font-size: 14px;
+        font-size: 39px;
     }
 
     .hero .heading {
-        font-size: 16px;
+        font-size: 45px;
     }
 
     .hero .subtext {
@@ -1865,7 +1880,7 @@ body {
     }
 
     .speech-bubble {
-        font-size: 7px;
+        font-size: 19px;
         top: -50px;
     }
 
@@ -1874,7 +1889,7 @@ body {
     }
 
     .counter-number {
-        font-size: 22px;
+        font-size: 59px;
     }
 
     .campaign-cats {
@@ -1912,7 +1927,7 @@ body {
 
 @media (max-width: 480px) {
     .hero .heading {
-        font-size: 12px;
+        font-size: 33px;
         line-height: 1.8;
     }
 
@@ -1933,11 +1948,11 @@ body {
     }
 
     .section-title {
-        font-size: 12px;
+        font-size: 33px;
     }
 
     .pixel-table th {
-        font-size: 7px;
+        font-size: 20px;
         padding: 8px 10px;
     }
 
@@ -1952,11 +1967,11 @@ body {
     }
 
     .legal-header h1 {
-        font-size: 13px;
+        font-size: 36px;
     }
 
     .legal-article h2 {
-        font-size: 11px;
+        font-size: 31px;
     }
 
     .legal-toc,
@@ -2018,8 +2033,8 @@ body {
 }
 
 .form-section h3 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 28px;
     color: var(--nebi-orange-text);
     margin-bottom: 16px;
     line-height: 1.6;
@@ -2078,8 +2093,8 @@ body {
 }
 
 .status-panel h1 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 16px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 45px;
     line-height: 1.7;
     margin-bottom: 16px;
     color: var(--nebi-dark);
@@ -2162,8 +2177,8 @@ body {
 
 .admin-badge {
     display: inline-block;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 7px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 19px;
     letter-spacing: 0.5px;
     padding: 5px 8px;
     border: 2px solid currentColor;
@@ -2203,24 +2218,24 @@ body {
 .admin-order-detail dd { font-weight: 600; }
 
 .admin-order-detail h3 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 12px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 33px;
     color: var(--nebi-orange-text);
     margin-bottom: 16px;
     line-height: 1.6;
 }
 
 .admin-order-detail h4 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 28px;
     color: var(--nebi-dark);
     margin: 24px 0 10px;
     line-height: 1.6;
 }
 
 .admin-detail-summary {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 9px;
+    font-family: 'Jersey 10', cursive;
+    font-size: 24px;
     color: var(--nebi-orange-text);
     cursor: pointer;
 }
@@ -2249,4 +2264,39 @@ body {
     width: 160px;
     height: auto;
     image-rendering: -webkit-optimize-contrast;
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+    .hero .logo-container,
+    .pixel-fish,
+    .paw-print,
+    .pixel-ball,
+    .sparkle,
+    .zzz.visible {
+        animation: none !important;
+    }
+
+    .cat-jump,
+    .cat-attention {
+        animation: none !important;
+    }
+
+    .hero .logo:hover,
+    .nav-logo img:hover,
+    .pixel-card:hover,
+    .pixel-btn:hover,
+    .pixel-btn:focus-visible,
+    .pixel-btn:active {
+        transform: none;
+    }
+
+    .fade-in {
+        transform: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .fade-in.visible {
+        transform: none;
+    }
 }

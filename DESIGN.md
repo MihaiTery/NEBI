@@ -13,26 +13,26 @@ colors:
   success: "#6BBF59"
 typography:
   display:
-    fontFamily: "'Press Start 2P', cursive"
-    fontSize: "20px"
+    fontFamily: "'Jersey 10', cursive"
+    fontSize: "56px"
     fontWeight: 400
     lineHeight: 1.6
     letterSpacing: "normal"
   headline:
-    fontFamily: "'Press Start 2P', cursive"
-    fontSize: "18px"
+    fontFamily: "'Jersey 10', cursive"
+    fontSize: "50px"
     fontWeight: 400
     lineHeight: 1.8
     letterSpacing: "normal"
   title:
-    fontFamily: "'Press Start 2P', cursive"
-    fontSize: "11px"
+    fontFamily: "'Jersey 10', cursive"
+    fontSize: "28px"
     fontWeight: 400
     lineHeight: 1.6
     letterSpacing: "normal"
   label:
-    fontFamily: "'Press Start 2P', cursive"
-    fontSize: "9px"
+    fontFamily: "'Jersey 10', cursive"
+    fontSize: "24px"
     fontWeight: 400
     lineHeight: 1.4
     letterSpacing: "0.5px"
@@ -112,22 +112,24 @@ A single warm, saturated orange carries the brand across nav, headings, borders,
 
 ## 3. Typography
 
-**Display/Label Font:** 'Press Start 2P', cursive (pixel bitmap face)
+**Display/Label Font:** 'Jersey 10', cursive (pixel bitmap face)
 **Body Font:** 'Nunito', sans-serif
 **Aside Font:** 'VT323', monospace
 
-**Character:** Press Start 2P is the brand's voice — chunky, all-caps-reading, unmistakably 8-bit — used sparingly at any given size because it's dense and slow to read at length. Nunito is the reading voice: warm, rounded, humanist, doing all the paragraph-length work. VT323 is a third, quieter register: a tall thin monospace used for asides that want to feel murmured rather than announced (the hero subtext, a soft aside line under the order summary).
+**Character:** Jersey 10 is the brand's voice — a bold, condensed 8-bit display face, used sparingly at any given size because it's dense and slow to read at length. Nunito is the reading voice: warm, rounded, humanist, doing all the paragraph-length work. VT323 is a third, quieter register: a tall thin monospace used for asides that want to feel murmured rather than announced (the hero subtext, a soft aside line under the order summary).
+
+**Why Jersey 10, not Press Start 2P.** The site originally used 'Press Start 2P'. Its shipped webfont renders the Romanian letters Ș/ș (U+0218/U+0219) as a broken, tiny, misplaced glyph — verified in-browser, not just a glyph-coverage check. Worse, once Press Start 2P's stylesheet declares coverage of that Unicode range, browsers commit to its (broken) resource and never fall through to a fallback font, whether that fallback is listed later in `font-family` or added as a competing `@font-face` for the same family — both were tested and both failed to recover the glyph. The same failure was independently confirmed on 'Pixelify Sans' and 'VT323' when used as primaries, ruling out "just add a fallback" as a fix. 'Jersey 10' was the only pixel/8-bit face tested that renders the full Romanian set (ă â î ș ț and capitals) correctly and natively, so it replaced Press Start 2P everywhere rather than sitting behind it in a fallback chain.
 
 ### Hierarchy
-- **Display** (400, 20px / 16px tablet / 12px mobile, line-height 1.6): the hero `<h1>`. The single largest use of the pixel face on the page.
-- **Headline** (400, 18px / 14px / 12px, line-height 1.8): `.section-title` — one per section, always paired with a leading emoji rather than an uppercase eyebrow.
-- **Title** (400, 10–16px, line-height 1.6–1.8): card titles, product/config panel headings — the pixel face at card scale.
-- **Label** (400, 7–12px, letter-spacing ~0.5px): nav links, buttons, table headers, badges, form labels — the smallest, densest use of the pixel face; never used for anything longer than a few words.
+- **Display** (400, 56px / 45px tablet / 33px mobile, line-height 1.6): the hero `<h1>`. The single largest use of the pixel face on the page.
+- **Headline** (400, 50px / 39px / 33px, line-height 1.8): `.section-title` — one per section, always paired with a leading emoji rather than an uppercase eyebrow.
+- **Title** (400, 28–45px, line-height 1.6–1.8): card titles, product/config panel headings — the pixel face at card scale.
+- **Label** (400, 19–32px, letter-spacing ~0.5px): nav links, buttons, table headers, badges, form labels — the smallest, densest use of the pixel face; never used for anything longer than a few words.
 - **Body** (400/600/700, 15–17px, line-height 1.4–1.6, opacity 0.85 on secondary copy, max ~700px measure): all paragraph content, card text, form inputs.
 - **Aside** (400, 26–32px, line-height 1.3): hero subtext and other quiet, secondary lines — large in size but soft in weight and opacity so it never competes with the pixel display type.
 
 ### Named Rules
-**The Density Ceiling Rule.** Press Start 2P is never set smaller than 7px or used for more than one short phrase at a time — it's a structural/label face, not a reading face. If a sentence needs the pixel font, it's too long; move it to Nunito or VT323.
+**The Density Ceiling Rule.** Jersey 10 is never set smaller than 19px or used for more than one short phrase at a time — it's a structural/label face, not a reading face. If a sentence needs the pixel font, it's too long; move it to Nunito or VT323. (Raised substantially from Press Start 2P's original 7px floor: at equal font-size, Jersey 10 renders roughly 2.7–2.8× narrower/lighter than Press Start 2P's blocky monospace glyphs — verified via a clean canvas glyph-width sweep confirming linear scaling across sizes, cross-checked against the live production site's actual rendered box widths — so every step of this ramp is scaled up by that same factor from the original Press Start 2P values, not just bumped by feel. An earlier, lower estimate of ~2.15–2.3× was caught and corrected after direct pixel-for-pixel comparison against nebi.ro showed it still undershot.)
 
 ## 4. Elevation
 
@@ -178,7 +180,7 @@ The configurator's stacked-image tower is NEBI's most distinctive pattern: indiv
 - **Do** keep every surface sharp-cornered (0 radius); the one approved exception is the 4px-radius speech bubble.
 - **Do** use zero-blur, solid-offset shadows only (`0 Npx 0 color`) — the Hard Shadow Rule.
 - **Do** lead sections with an emoji + `.section-title`, never an uppercase tracked eyebrow line.
-- **Do** keep Press Start 2P to short phrases (labels, titles, headings) and route anything paragraph-length to Nunito.
+- **Do** keep Jersey 10 to short phrases (labels, titles, headings) and route anything paragraph-length to Nunito.
 - **Do** let NEBI Orange stay the only saturated color; Success Green is reserved for adoption-status text only.
 - **Do** communicate special/premium pieces (sisal, rope) through colored glow/filter, matching the Tower Preview pattern, not through badges or stripes.
 

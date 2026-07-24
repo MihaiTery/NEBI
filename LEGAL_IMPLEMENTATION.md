@@ -114,7 +114,7 @@ migrația unei tabele `checkout_consent` sau echivalent, cu câmpurile de mai su
 
 | Furnizor | Rol | Status |
 |---|---|---|
-| Google Fonts (`fonts.googleapis.com`, `fonts.gstatic.com`) | Fonturi web (Nunito, Press Start 2P, VT323) | **Activ** — transmite IP-ul vizitatorului către Google la fiecare încărcare de pagină |
+| Google Fonts (`fonts.googleapis.com`, `fonts.gstatic.com`) | Fonturi web (Nunito, Jersey 10, VT323) | **Activ** — transmite IP-ul vizitatorului către Google la fiecare încărcare de pagină |
 | Găzduire (dedusă din `CNAME` → `nebi.ro`, stil GitHub Pages) | Hosting site static | De confirmat explicit înainte de lansare |
 
 Niciun alt furnizor (plăți, e-mail, analytics, AI) nu este integrat în cod la data acestei implementări. Toate
